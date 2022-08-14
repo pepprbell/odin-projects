@@ -1,0 +1,42 @@
+body {
+    font-family: Roboto, sans-serif;
+}
+
+.flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: 1300px;
+}
+
+:root {
+    --dark-bg: #1f2937;
+    --hero-main: #f9faf8;
+    --hero-secondary: #e5e7eb;
+    --header-logo: #f9faf8;
+    --button: #3882f6;
+    --info-header: #1f2937;
+    --quote-bg: #e5e7eb;
+    --quote-text: #1f2937;
+}
+
+a {
+    color: #fff;
+    text-decoration: none;
+    outline: none
+}
+a:hover, a:active {
+    text-decoration: none;
+    color:#fff;
+    background-color:#f59000;
+}
+
+button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+}
