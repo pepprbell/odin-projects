@@ -1,0 +1,48 @@
+body {   
+    background-image: url('https://img.freepik.com/free-photo/gradient-earth-tone-background-soft-vintage-style_53876-125325.jpg?w=1060&t=st=1661341923~exp=1661342523~hmac=a67109dae42e4423435bbb1a495d8454542bc5b97abdd1dd2c1150ae2e3dd3e3');
+    background-size: cover;
+    height: 100vh;
+    font-family: 'Montserrat';
+}
+
+.container {
+    width: 80%;
+    height: 100%;
+    overflow: hidden;
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 120px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-around;
+    margin: 150px auto 0;
+}
+
+.scoreboard {
+    display: flex;
+    justify-content: space-around;
+    max-width: 500px;
+    margin: 0 auto 100px;
+}
+
+button {
+    width: 15vw;
+    height: 15vw;
+    background-size: cover;
+    border: none;
+}
+
+.rock {
+    background-image: url('https://cdn.pixabay.com/photo/2017/09/06/21/43/crystal-2723145_960_720.jpg');
+}
+
+.paper {
+    background-image: url('https://cdn.pixabay.com/photo/2018/03/25/13/43/garbage-3259455_960_720.jpg');
+}
+
+.scissors {
+    background-image: url('https://images.unsplash.com/photo-1574858818846-886b8380713b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80');
+    background-size: 110%;
+}

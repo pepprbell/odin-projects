@@ -1,47 +1,61 @@
+const rock = document.querySelector('.rock')
+const paper = document.querySelector('.paper')
+const scissors = document.querySelector('.scissors')
+const buttons = document.querySelectorAll('button')
+
+buttons.forEach(button => button.addEventListener('click', playRound));
+
+let count = {'win' : 0, 'draw' : 0, 'lose' : 0}
+
 function getComputerChoice() {
     let n = Math.floor(Math.random()*3)
     switch (n) {
         case 0:
-            return 'ROCK'
+            return 'rock'
             break
         case 1:
-            return 'PAPER'
+            return 'paper'
             break    
         default:
-            return 'SCISSORS'
+            return 'scissors'
             break
     }
 }
 
-function playRound(playerSelection, computerSelection=getComputerChoice()) {
-    let win = ''
-    let res = 0
-    let table = {'ROCK':'SCISSORS', 'PAPER':'ROCK', 'SCISSORS':'PAPER'}
-    playerSelection = playerSelection.toUpperCase()
+function playRound(e) {
+    const computerSelection = getComputerChoice()
+    const playerSelection = e.srcElement.className
+
+    const table = {'rock':'scissors', 'paper':'rock', 'scissors':'paper'}
+
     if (playerSelection === computerSelection) {
-        win = 'Draw!'
-        res = 1
+        countRound('draw')
     } else if (table[playerSelection] === computerSelection) {
-        win = 'Win!'
+        countRound('win')
     } else {
-        win = 'Lose...'
-        res = 2
+        countRound('lose')
     }
-    return [win + ` You:${playerSelection}, Computer:${computerSelection}`, res]
 }
 
-function game() {
-    let count = [0,0,0]
+function countRound(res) {
+    let result = document.querySelector(`.${res}`)
+    count[res] += 1
+    result.innerHTML = ' ' + count[res]
 
-    for (let i = 0; i < 5; i++) {
-        let playerSelection = window.prompt('Rock, Paper, Scissors!')
-        let res = playRound(playerSelection)
-        console.log(`Round ${i+1}: ` + res[0])
-        count[res[1]] += 1
+    if (count[res] === 5 && res !== 'draw') {
+        endGame(res)
     }
-
-    console.log('RESULT IS:')
-    console.log(`Win:${count[0]}, Draw:${count[1]}, Lose:${count[2]}`)
 }
 
-game()
+function endGame(res) {
+    if (res === 'win') {
+        alert('You Win!')
+    } else {
+        alert('Computer Win!')
+    }
+    count = {'win' : 0, 'draw' : 0, 'lose' : 0}
+    const spans = document.querySelectorAll('span')
+    spans.forEach(span => {
+        span.innerHTML = ' 0'
+    });
+}
