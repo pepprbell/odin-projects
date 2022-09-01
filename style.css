@@ -2,3 +2,66 @@
     font-family: Norse-Bold;
     src: url('assets/Norse-Bold.otf') format('opentype');
 }
+
+body {
+    display: flex;
+    overflow: hidden;
+    font-family: 'Montserrat';
+}
+
+a {
+    color: inherit;
+}
+
+a:hover {
+    color: inherit;
+    text-decoration:none; 
+    cursor:pointer;  
+}
+
+.left {
+    height: 100vh;
+    width: 60vh;
+}
+
+.left > img {
+    height: 100vh;
+    width: 56vh;
+    position: absolute;
+    z-index: 0;
+    opacity: 0.95;
+}
+
+.logo-area {
+    display: flex;
+    position: relative;
+    width: 56vh;
+    height: 150px;
+    background-color: #00000080;
+    margin-top: 20vh;
+    z-index: 5;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-area img {
+    height: 120px;
+    margin: 5px;
+    object-fit: cover;
+}
+
+.logo-area > h1 {
+    color: #fff;
+    font-family: Norse-Bold;
+    font-size: 80px;
+}
+
+.credit {
+    position: relative;
+    color: #fff;
+    height: calc(80vh - 180px);
+    margin: 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
