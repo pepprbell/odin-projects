@@ -3,10 +3,15 @@
     src: url('assets/Norse-Bold.otf') format('opentype');
 }
 
+:root {
+    --green: #596D48;
+}
+
 body {
     display: flex;
     overflow: hidden;
-    font-family: 'Montserrat';
+    font-family: 'Noto Sans', sans-serif;
+    align-items: center;
 }
 
 a {
@@ -17,6 +22,35 @@ a:hover {
     color: inherit;
     text-decoration:none; 
     cursor:pointer;  
+}
+
+input {
+    border: 2px solid #E5E7EB;
+    height: 25px;
+    border-radius: 5px;
+}
+
+input:focus {
+    border: 2px solid #24a0ed;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    outline: none;
+}
+
+.invalid {
+    border: 2px solid rgb(189, 0, 0);
+}
+
+button {
+    width: 240px;
+    height: 50px;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: var(--green);
+    margin: 60px 70px 20px;
+    border: none;
+    border-radius: 12px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .left {
@@ -64,4 +98,73 @@ a:hover {
     display: flex;
     align-items: flex-end;
     justify-content: center;
+}
+
+.right {
+    width: 100%;
+    height: fit-content;
+    background-color: #fdfdfd;
+}
+
+.right > *:not(button) {
+    padding-left: 70px;
+}
+
+.right h2 {
+    margin: 0 0 25px;
+}
+
+.right > p {
+    font-weight: bold;
+}
+
+.right a {
+    text-decoration:none;
+    color: var(--green);
+}
+
+.intro {
+    padding: 0 0 40px;
+}
+
+.intro > p {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.form {
+    width: 100%;
+    background-color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 40px 0 40px;
+}
+
+.row {
+    display: flex;
+    width: 630px;
+    height: 80px;
+    justify-content: space-between;
+    /* padding-right: 400px; */
+}
+
+.row > div {
+    width: 260px;
+    height: fit-content;
+}
+
+.row p {
+    font-size: 12px;
+    color: rgb(189, 0, 0);
+    margin: 0;
+}
+
+form label {
+    font-size: 14px;
+    letter-spacing: 1px;
+    margin: 10px 0;
+}
+
+form input {
+    margin-top: 6px;
+    width: 100%;
 }
