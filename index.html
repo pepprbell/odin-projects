@@ -28,37 +28,38 @@
         <div class="row">
           <div class="first-name">
             <label for="first-name">FIRST NAME</label>
-            <input type="text" id="first-name" name="first-name">
+            <input type="text" id="first-name" name="first-name" required>
           </div>
           <div class="last-name">
             <label for="last-name">LAST NAME</label>
-            <input type="text" id="last-name" name="last-name">
+            <input type="text" id="last-name" name="last-name" required>
           </div>
         </div>
         <div class="row">
           <div class="email">
             <label for="email">EMAIL</label>
-            <input type="email" id="email" name="email">
+            <input type="email" id="email" name="email" autocomplete="email" required>
           </div>
           <div class="phone-number">
             <label for="phone-numer">PHONE NUMBER</label>
-            <input type="number" id="phone-number" name="phone-number">
+            <input type="number" id="phone-number" name="phone-number" required>
           </div>
         </div>
         <div class="row">
           <div class="password">
             <label for="password">PASSWORD</label>
-            <input type="password" id="password" name="password">
+            <input type="password" id="password" name="password" autocomplete="new-password" required>
           </div>
           <div class="confirm-password">
             <label for="confirm-password">CONFIRM PASSWORD</label>
-            <input type="password" id="confirm-password" name="confirm-password">
+            <input type="password" id="confirm-password" name="confirm-password" autocomplete="new-password" required>
           </div>
         </div>
       </form>
     </div>
-    <button type="submit">Create Account</button>
+    <button class="submit" type="submit">Create Account</button>
     <p>Already have an account? <a href="">Log in</a></p>
   </div>
+  <script src="./index.js"></script>
 </body>
 </html>
