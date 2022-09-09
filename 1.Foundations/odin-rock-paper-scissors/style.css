@@ -1,8 +1,7 @@
 body {   
-    background-image: url('https://img.freepik.com/free-photo/gradient-earth-tone-background-soft-vintage-style_53876-125325.jpg?w=1060&t=st=1661341923~exp=1661342523~hmac=a67109dae42e4423435bbb1a495d8454542bc5b97abdd1dd2c1150ae2e3dd3e3');
     background-size: cover;
     height: 100vh;
-    font-family: 'Montserrat';
+    overflow: hidden;
 }
 
 .container {
