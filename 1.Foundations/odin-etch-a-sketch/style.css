@@ -1,0 +1,49 @@
+:root {
+    --one: #FFF9DB;
+    --two: #FADEB9;
+    --three: #DEBFD8;
+    --four: #8A87C7;
+    --five: #4B56A3;
+    --box-size: 200px;
+}
+
+body {
+    background-color: rgba(0,0,0,0.09);
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat';
+}
+
+.title {
+    display: flex;
+    width: 800px;
+    margin: 0 auto;
+    justify-content: space-between;
+    line-height: 60px;
+}
+
+.container {
+    display: flex;
+    width: 800px;
+    flex-wrap: wrap;
+    background-color: white;
+    margin: 0 auto;
+}
+
+.cell {
+    width: var(--box-size);
+    height: var(--box-size);
+}
+
+button {
+    border: none;
+    background-color: var(--four);
+    margin: 0 auto;
+    height: 60px;
+    border-radius: 15px;
+    margin: 20px 0;
+    padding: 0 15px;
+    font-size: 18px;
+    font-family: 'Montserrat';
+    color: white;
+}
