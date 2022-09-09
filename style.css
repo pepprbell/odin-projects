@@ -29,6 +29,7 @@ h1 {
 
 h2 {
     font-weight: normal;
+    width: fit-content;
 }
 
 a {
@@ -126,7 +127,29 @@ header {
 }
 
 .item {
-    margin: 30px 0 0;
+    display: flex;
+    margin: 28px 0 0;
+    justify-content: space-between;
+    align-items: center;
+    height: 32px;
+}
+
+.github {
+    background-color: var(--font);
+    border-radius: 1000px;
+    width: 28px;
+    height: 28px;
+}
+
+.github:hover {
+    cursor: pointer;
+}
+
+.github img {
+    width: 26px;
+    height: 26px;
+    margin: 1px;
+    padding: 0;
 }
 
 .footer {
@@ -154,4 +177,8 @@ header {
     height: 70px;
     right: 6%;
     bottom: 6%;
+}
+
+.tooltip {
+    --bs-tooltip-bg: #fff;
 }
