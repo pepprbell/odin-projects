@@ -1,0 +1,38 @@
+:root {
+    --bg: #1a1a1b;
+    --shade: #222222;
+    --font: #d7dadc;
+    --link: #cc9543;
+}
+
+p,
+h1 {
+    color: var(--font);
+}
+
+a {
+    color: var(--link);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* a {
+    color: var(--link);
+    text-decoration: none;
+    background-image: linear-gradient(var(--link), var(--link));
+    background-size: 0% 0.1em;
+    background-position-y: 100%;
+    background-position-x: 100%;
+    background-repeat: no-repeat;
+    transition: 0.2s ease-in-out;
+}
+
+a:hover,
+a:focus,
+a:active {
+    background-size: 100% 0.1em;
+    background-position-x: 0%;
+} */

@@ -3,9 +3,7 @@ The Odin Project Foundations / Javascript Basics / 12. Revisiting Rock Paper Sci
 
 The third project with JS Basics.
 
-[LIVE DEMO LINK](https://pepprbell.github.io/odin-rock-paper-scissors/)
-
-[Project Link](https://www.theodinproject.com/lessons/foundations-rock-paper-scissors)
+[LIVE DEMO LINK](https://pepprbell.github.io/odin-projects/1.Foundations/odin-rock-paper-scissors/index.html)
 
 Update
 22.08.24. Make RPS-UI
