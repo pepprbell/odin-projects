@@ -1,0 +1,112 @@
+body {
+    margin: 0;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+input {
+    font-family: 'Times New Roman', Times, serif;
+    background-color: transparent;
+    font-size: 20px;
+    height: 20px;
+    border: none;
+    margin: 40px 0 16px;
+    text-align: center;
+    width: 180px;
+}
+
+input:focus {
+    outline: none;
+}
+
+h4 {
+    font-size: 20px;
+    width: fit-content;
+    text-decoration: none;
+    background-image: linear-gradient(#333, #333);
+    background-size: 0% 0.1em;
+    background-position-y: 50%;
+    background-position-x: 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.2s ease-in-out;
+    margin: 40px 0 16px;
+}
+
+p {
+    font-size: 16px;
+    background-image: linear-gradient(#333, #333);
+    background-size: 0% 0.1em;
+    background-position-y: 50%;
+    background-position-x: 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.2s ease-in-out;
+}
+
+.container {
+    display: grid;
+    width: 1280px;
+    height: 100vh;
+    margin: 0 auto;
+    padding: 50px 100px;
+    grid-template-columns: repeat(5,1fr);
+}
+
+.flex {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    width: 200px;
+    height: 250px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    background-size: cover;
+        background-clip: content-box;
+    box-sizing: border-box;
+    text-align: center;
+    color: #222;
+    text-overflow: ellipsis;
+    margin: 0 auto;
+    transition: 0.2s ease-in-out;
+}
+
+.card > input:nth-child(3) {
+    font-size: 16px;
+    margin: 16px 0;
+    width: 180px;
+}
+
+.card > div {
+    width: 150px;
+    margin: 0 auto;
+    background-color: #ccc;
+    height: 1px;
+}
+
+.card button {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    color: #222;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+    border-radius: 1px;
+    top: 0;
+    right: 0;
+}
+
+.card button:hover {
+    cursor: pointer;
+}
+
+.read {
+    opacity: 0.6;
+    background-size: 100% 0.1em;
+    background-position-x: 0%;
+}
