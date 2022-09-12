@@ -50,13 +50,16 @@ a:active {
     background-position-x: 0%;
 }
 
+.yet a {
+    color: #666;
+    background-image: none;
+}
+
 img {
     display: inline-block;
     border-radius: 999px;
-    padding: 6px;
-    width: 90px;
+    width: 86px;
     height: auto;
-    background-color: #ffffff10;
     box-sizing: border-box;
     margin-right: 8px;
 }
@@ -153,8 +156,8 @@ header {
 }
 
 .footer {
-    position: absolute;
     bottom: 10px;
+    margin-bottom: 24px;
 }
 
 .footer a {
