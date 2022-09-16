@@ -36,7 +36,9 @@ const gameBoard = (() => {
   const reset = () => {
     cells.forEach(cell => cell.addEventListener('click', gameFlow))
     board = [0,0,0,0,0,0,0,0,0]
-    activeUser = player1
+    if (activeUser != player1) {
+      updateDisplay.changeTurn()
+    }
     cells.forEach(cell => {
       cell.classList = ''
       cell.innerHTML = ''
@@ -92,9 +94,10 @@ const gameFlow = ((e) => {
     updateDisplay.alert(activeUser, 'win')
   } else if (board.indexOf(0) == -1) {
     updateDisplay.alert(activeUser, 'draw')
+  } else {
+    updateDisplay.changeTurn()
   }
 
-  updateDisplay.changeTurn()
   return
 })
 
