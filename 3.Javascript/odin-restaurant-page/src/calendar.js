@@ -4,6 +4,12 @@
 //Fixed day highlight
 //Added previous month and next month view
 
+// modified by Pepprbell
+// Disabled previous dates
+// Button lit up after click date
+// Modal show up after click button
+// Modified CSS
+
 function CalendarControl() {
   const calendar = new Date();
   const calendarControl = {
@@ -47,17 +53,15 @@ function CalendarControl() {
       ).getDate();
       return lastDate;
     },
-    ignorePrevDates: function () {
-      let dates = [...document.querySelectorAll('number-item')]
-      let yyyymm = calendar.getFullYear() + '-' + calendar.getMonth() + '-'
-    },
     navigateToPreviousMonth: function () {
       calendar.setMonth(calendar.getMonth() - 1);
       calendarControl.attachEventsOnNextPrev();
+      calendarControl.disableIfThisMonth();
     },
     navigateToNextMonth: function () {
       calendar.setMonth(calendar.getMonth() + 1);
       calendarControl.attachEventsOnNextPrev();
+      calendarControl.disableIfThisMonth();
     },
     navigateToCurrentMonth: function () {
       let currentMonth = calendarControl.localDate.getMonth();
@@ -65,6 +69,16 @@ function CalendarControl() {
       calendar.setMonth(currentMonth);
       calendar.setYear(currentYear);
       calendarControl.attachEventsOnNextPrev();
+    },
+    disableIfThisMonth: function () {
+      let prevBtn = document.querySelector(".calendar .calendar-prev a");
+      if (calendar.getFullYear() == calendarControl.localDate.getFullYear() &&
+      calendar.getMonth() == calendarControl.localDate.getMonth()) {
+        prevBtn.classList.add('disable')
+        prevBtn.removeEventListener("click",calendarControl.navigateToPreviousMonth)
+      } else {
+        prevBtn.classList.remove('disable')
+      }
     },
     displayYear: function () {
       let yearLabel = document.querySelector(".calendar .calendar-year-label");
@@ -81,12 +95,8 @@ function CalendarControl() {
       const button = document.querySelector('.calendar-button')
       if (before) {before.classList.toggle('calendar-selected')}
       e.target.parentNode.classList.add('calendar-selected')
-      console.log(
-        `${e.target.textContent} ${
-          calendarControl.calMonthName[calendar.getMonth()]
-        } ${calendar.getFullYear()}`
-      );
       button.classList.add('active-button')
+      button.addEventListener('click',reserve)
     },
     plotSelectors: function () {
       document.querySelector(
@@ -122,10 +132,13 @@ function CalendarControl() {
         calendar.getMonth() + 1,
         calendar.getFullYear()
       );
-
-      let curr = `${calendar.getFullYear()}-${calendarControl.calMonthName[calendar.getMonth()]}-23`
-      console.log(new Date(Date.parse(curr)) < calendarControl.localDate)
-      // dates of current month
+      
+      let firstDayAvailable = calendarControl.firstDayNumber()
+      if (calendar.getFullYear() == calendarControl.localDate.getFullYear() &&
+          calendar.getMonth() == calendarControl.localDate.getMonth()) {
+        firstDayAvailable += calendarControl.localDate.getDay() + 1
+      }
+      
       for (let i = 1; i < calendarDays; i++) {
         if (i < calendarControl.firstDayNumber()) {
           prevDateCount += 1;
@@ -133,17 +146,18 @@ function CalendarControl() {
             ".calendar .calendar-body"
           ).innerHTML += `<div class="prev-dates"></div>`;
           prevMonthDatesArray.push(calendarControl.prevMonthLastDate--);
-        } else if (new Date(Date.parse(curr+i)) < calendarControl.localDate - 86400000) {
-          console.log(curr+i)
+        } else if (firstDayAvailable !== calendarControl.firstDayNumber() &&
+                   i < firstDayAvailable) {
           document.querySelector(
             ".calendar .calendar-body"
-          ).innerHTML += `<div class="prev-dates" data-num=${count}><a class="dateNumber" href="#">${count++}</a></div>`;
+          ).innerHTML += `<div class="prev-dates">${count++}</div>`;
         } else {
           document.querySelector(
             ".calendar .calendar-body"
           ).innerHTML += `<div class="number-item" data-num=${count}><a class="dateNumber" href="#">${count++}</a></div>`;
         }
       }
+
       //remaining dates after month dates
       for (let j = 0; j < prevDateCount + 1; j++) {
         document.querySelector(
@@ -153,7 +167,6 @@ function CalendarControl() {
       calendarControl.highlightToday();
       calendarControl.plotPrevMonthDates(prevMonthDatesArray);
       calendarControl.plotNextMonthDates();
-      calendarControl.ignorePrevDates()
     },
     attachEvents: function () {
       let prevBtn = document.querySelector(".calendar .calendar-prev a");
@@ -184,7 +197,7 @@ function CalendarControl() {
       ) {
         document
           .querySelectorAll(".number-item")
-          [calendar.getDate() - 1].classList.add("calendar-today");
+          [0].classList.add("calendar-today");
       }
     },
     plotPrevMonthDates: function(dates){
@@ -225,6 +238,7 @@ function CalendarControl() {
       calendarControl.plotSelectors();
       calendarControl.plotDates();
       calendarControl.attachEvents();
+      calendarControl.disableIfThisMonth();
     }
   };
   calendarControl.init();
