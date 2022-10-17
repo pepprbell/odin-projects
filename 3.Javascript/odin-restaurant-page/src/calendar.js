@@ -244,4 +244,4 @@ function CalendarControl() {
   calendarControl.init();
 }
 
-const calendarControl = new CalendarControl();
+let calendarControl;
