@@ -1,0 +1,59 @@
+.home {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    transition: var(--page);
+}
+
+.home > h1 {
+    position: absolute;
+    font-family: 'Sriracha', cursive;
+    transform: skew(0,-7deg);
+    font-size: 90px;
+    width: fit-content;
+    line-height: 84px;
+    left: calc(50vw - 212.5px);
+    top: 30vh;
+}
+
+.home > h1::before,
+.home > h1::after {
+    display: block;
+    content: '';
+    box-shadow:
+        0 0 7px var(--yellow),
+        0 0 10px var(--yellow),
+        0 0 15px var(--selected),
+        0 0 21px var(--orange),
+        0 0 32px var(--orange),
+        0 0 7px var(--yellow),
+        0 0 10px var(--yellow),
+        0 0 15px var(--selected),
+        0 0 21px var(--orange),
+        0 0 32px var(--orange);
+    height: 2.5px;
+    margin: 12px;
+    width: 405px;
+    background-color: var(--yellow);
+    border-radius: 999px;
+    transform: translateX(-7px);
+}
+
+.home > h1::before {
+    width: 335px;
+    margin: 10px;
+}
+
+.logo {
+    font-family: 'Sriracha', cursive;
+    letter-spacing: -2px;
+    color: var(--yellow);
+    text-shadow: 5px 5px 0px var(--orange),
+        0 0 7px var(--yellow),
+        0 0 10px var(--yellow),
+        0 0 15px var(--selected),
+        0 0 21px var(--orange),
+        0 0 32px var(--orange);
+}
