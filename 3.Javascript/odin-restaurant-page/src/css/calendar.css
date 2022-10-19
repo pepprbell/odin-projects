@@ -1,5 +1,5 @@
 :root {
-    --calendar-bg-color: #222;
+    --calendar-bg-color: #111;
     --calendar-font-color: #FFF;
     --weekdays-border-bottom-color: #404040;
     --calendar-date-hover-color: var(--yellow);
