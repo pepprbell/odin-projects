@@ -27,7 +27,6 @@ const load = () => {
   const nav = () => {
     const h4s = [domFactory('h4','','home'),domFactory('h4','','menu'),domFactory('h4','','book')]
     const h4Container = domFactory('div','','')
-    console.log(h4Container)
     h4s.forEach(h4 => h4Container.appendChild(h4))
 
     const moon = domFactory('div','moon','')
@@ -133,7 +132,6 @@ const loader = load()
 const slide = (e) => {
   const tabs = [document.querySelector('.home'),document.querySelector('.menu'),document.querySelector('.book')]
   const body = document.querySelector('body')
-  console.log(e.target.innerHTML)
   switch (e.target.innerHTML) {
     case 'home':
       body.classList.remove('shade')
