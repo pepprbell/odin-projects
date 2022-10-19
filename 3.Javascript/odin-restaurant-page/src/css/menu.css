@@ -18,8 +18,9 @@
     background-color: transparent;
 }
 
-.menu-board > div:nth-child(1) {
+.menu-content {
     position: absolute;
+    display: flex;
     width: calc(80vw - 20px);
     min-width: 284px;
     max-width: 1180px;
@@ -29,6 +30,54 @@
     top: 8px;
     left: 8px;
     z-index: 5;
+    justify-content: space-around;
+}
+
+.menu-content > div {
+    display: grid;
+    position: relative;
+    grid-template-columns: 3fr 1fr 1fr;
+    grid-template-rows: repeat(10, 1fr);
+    width: 100%;
+    padding: 40px 40px 40px 50px;
+    font-family: 'Gothic A1', sans-serif;
+    font-size: 20px;
+}
+
+.menu-content p {
+    line-height: 70px;
+    margin: 0;
+    font-weight: 500;
+    text-align: center;
+    text-shadow:
+        0 0 2px var(--moon),
+        0 0 2px var(--yellow),
+        0 0 3px var(--selected);
+}
+
+.menu-content p:nth-child(-n+3) {
+    line-height: normal;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.menu-content p:nth-child(3n-2) {
+    text-align: left;
+    letter-spacing: 2px;
+}
+
+.menu-content > div::after {
+    position: absolute;
+    content: '';
+    width: 1px;
+    height: 100%;
+    background-color: var(--moon);
+    top: 0;
+    right: 0;
+}
+
+.menu-content > div:nth-child(3)::after {
+    width: 0;
 }
 
 .menu-board > div:nth-child(n+2) {

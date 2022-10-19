@@ -58,7 +58,37 @@ const load = () => {
 
   const menu = () => {
     const board = domFactory('div','menu-board','')
-    for (let i = 0; i <= 4; i++) {
+    const detail = domFactory('div','menu-content','')
+    const coffee = [['COFFEE','','',
+                     '','HOT','COLD',
+                     '에스프레소','2.5','2.5',
+                     '아메리카노','3.0','3.0',
+                     '카페 라떼','4.0','4.5',
+                     '바닐라 라떼', '4.5','5.0',
+                     '카푸치노','4.5','5.0',
+                     '카페모카','5.0','5.5'],
+                    ['BEVERAGES','','',
+                     '','HOT','COLD',
+                     '허니밀크','3.5','4.0',
+                     '초코 라떼','4.5','5.0',
+                     '그린티 라떼','4.5','5.0',
+                     '로얄 밀크티','5.0','5.5',
+                     '아이스티','','3.5'],
+                    ['FRUIT TEA','','',
+                     '','HOT','COLD',
+                     '자몽티','3.5','4.0',
+                     '레몬티','3.5','4.0',
+                     '생강티','3.5','4.0',
+                     '유자티','3.5','4.0']]
+    for (let i = 0; i < 3; i++) {
+      const part = domFactory('div','','')
+      for (let j = 0; j < coffee[i].length; j++) {
+        part.appendChild(domFactory('p','',coffee[i][j]))
+      }
+      detail.appendChild(part)
+    }
+    board.appendChild(detail)
+    for (let i = 0; i <= 3; i++) {
       board.appendChild(domFactory('div','',''))
     }
 
@@ -128,5 +158,3 @@ const slide = (e) => {
 
 const navButtons = [...document.querySelectorAll('.nav h4')]
 navButtons.forEach(navButton => navButton.addEventListener('click',slide))
-
-slide({target:{innerHTML:'menu'}})
