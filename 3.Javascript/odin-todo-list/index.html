@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/normalize.css">
+  <link rel="stylesheet" href="style.css">
+  <title>Todo List</title>
+</head>
+<body>
+  <div>
+    <div class="left">
+      <ul>
+        <li>Project 1</li>
+        <li>Project 2</li>
+      </ul>
+    </div>
+    <div class="right">
+      <div class="project">
+        <header class="project-header">
+          <h3>Project 1</h3>
+          <div>delete</div>
+        </header>
+        <ul class="project-body">
+          <li class="todo">
+            <header class="todo-header">
+              <input type="checkbox" name="" id="">
+              <h3>Todo Name</h3>
+              <div>priority</div>
+            </header>
+            <ul class="todo-body">
+              <li>2022/11/06</li>
+            </ul>
+          </li>
+          <li class="todo expand">
+            <header class="todo-header">
+              <input type="checkbox" name="" id="">
+              <h3>Todo Name</h3>
+            </header>
+            <ul class="todo-body">
+              <li class="add">Add a description</li>
+              <li>
+                <button>🔥</button>
+                <button>😐</button>
+                <button>🕊️</button>
+              </li>
+              <li>2022/11/06</li>
+            </ul>
+          </li>
+          <li class="">
+            <h3 class="add">+ Add a todo</h3>
+          </li>
+        </ul>
+      </div>
+  
+      <div class="project">
+        <header class="project-header">
+          <h3>Project 2</h3>
+          <div>delete</div>
+        </header>
+        <ul class="project-body">
+          <li class="">
+            <h3 class="add">+ Add a todo</h3>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <script src="./index.js"></script>
+</body>
+</html>
