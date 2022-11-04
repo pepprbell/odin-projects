@@ -17,3 +17,4 @@ I've done:
 ### 3. Javascript
 - Library
 - Tic Tac Toe
+- Restaurant Page (note: not working, webpack and ref don't work for mystic reason)
