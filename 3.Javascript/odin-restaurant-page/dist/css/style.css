@@ -18,7 +18,7 @@
 
 @font-face {
     font-family: Bebaskai;
-    src: url('/assets/BebasKai.ttf') format('truetype');
+    src: url('/odin-projects/assets/BebasKai.ttf') format('truetype');
 }
 
 body {
