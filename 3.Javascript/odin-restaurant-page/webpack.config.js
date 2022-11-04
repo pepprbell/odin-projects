@@ -5,10 +5,5 @@ module.exports = {
   output: {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
-  },
-  entry: './src/calendar.js',
-  output: {
-    filename: 'calendar.js',
-    path: path.resolve(__dirname, 'dist'),
-  },
+  }
 };
