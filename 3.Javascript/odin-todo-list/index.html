@@ -4,66 +4,127 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/normalize.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <link rel="stylesheet" href="style.css">
+  
   <title>Todo List</title>
 </head>
 <body>
-  <div>
+  <div class="container">
     <div class="left">
       <ul>
-        <li>Project 1</li>
-        <li>Project 2</li>
+        <li>프로젝트 1</li>
+        <li>프로젝트 2</li>
       </ul>
     </div>
     <div class="right">
-      <div class="project">
-        <header class="project-header">
-          <h3>Project 1</h3>
-          <div>delete</div>
-        </header>
-        <ul class="project-body">
-          <li class="todo">
-            <header class="todo-header">
-              <input type="checkbox" name="" id="">
-              <h3>Todo Name</h3>
-              <div>priority</div>
-            </header>
-            <ul class="todo-body">
-              <li>2022/11/06</li>
-            </ul>
-          </li>
-          <li class="todo expand">
-            <header class="todo-header">
-              <input type="checkbox" name="" id="">
-              <h3>Todo Name</h3>
-            </header>
-            <ul class="todo-body">
-              <li class="add">Add a description</li>
-              <li>
-                <button>🔥</button>
-                <button>😐</button>
-                <button>🕊️</button>
-              </li>
-              <li>2022/11/06</li>
-            </ul>
-          </li>
-          <li class="">
-            <h3 class="add">+ Add a todo</h3>
-          </li>
-        </ul>
+      <div class="section">
+        <div class="project">
+          <header class="project-header">
+            <input value="프로젝트 1"></input>
+            <span class="material-symbols-outlined md-24 more">more_horiz</span>
+          </header>
+          <ul class="project-body">
+            <li>
+              <div class="todo">
+              <header class="todo-header">
+                <span>
+                  <label for="1"><input type="checkbox" name="1" id="1"></label>
+                  <p>날짜가 있는 할 일</p>
+                </span>
+                <div class="priority green delete-hover"></div>
+              </header>
+              <div class="due">
+                <span class="material-symbols-outlined md-18">calendar_today</span>
+                <p>11/06</p>
+              </div>
+              </div>
+              <div class="delete delete-hover"><span class="material-symbols-outlined">delete</span></div>
+            </li>
+            <li>
+              <div class="todo">
+                <header class="todo-header">
+                  <span>
+                    <label for=""><input type="checkbox" name="" id=""></label>
+                    <p>날짜가 없는 할 일</p>
+                  </span>
+                  <div class="priority yellow"></div>
+                </header>
+                <ul class="todo-body">
+                </ul>
+              </div>
+              <div class="delete"></div>
+            </li>
+            <li>
+              <div class="todo expand">
+                <header class="todo-header">
+                  <span>
+                    <label for=""><input type="checkbox" name="" id=""></label>
+                    <input value="클릭 후"></input>
+                  </span>
+                </header>
+                <ul class="todo-body">
+                  <li class="add"><div class="desc" contenteditable></div></li>
+                  <li><h3>2022. 11. 05.<input type="date"></h3></li>
+                  <li class="buttons">
+                    <label class="red" for="red"><input type="radio" name="p" id="red">🔥</label>
+                    <label class="yellow" for="yellow"><input type="radio" name="p" id="yellow">⚡</label>
+                    <label class="green" for="green"><input type="radio" name="p" id="green">🌱</label>
+                    <label class="blue" for="blue"><input type="radio" name="p" id="blue">💧</label>
+                  </li>
+                </ul>
+              </div>
+              <div class="delete"></div>
+            </li>
+            <li class="add-todo">
+              <h3>+ Add a todo</h3>
+            </li>
+          </ul>
+        </div>
       </div>
   
-      <div class="project">
-        <header class="project-header">
-          <h3>Project 2</h3>
-          <div>delete</div>
-        </header>
-        <ul class="project-body">
-          <li class="">
-            <h3 class="add">+ Add a todo</h3>
-          </li>
-        </ul>
+      <div class="section">
+        <div class="project">
+          <header class="project-header">
+            <input value="프로젝트 2"></input>
+            <span class="material-symbols-outlined md-24 project-delete">more_horiz</span>
+          </header>
+          <ul class="project-body">
+            <li>
+              <div class="todo done">
+                <header class="todo-header">
+                  <span>
+                    <label for="4"><input type="checkbox" name="4" id="4"><span class="material-symbols-outlined">done</span></label>
+                    <p>다 한 할 일</p>
+                  </span>
+                  <div class="priority blue"></div>
+                </header>
+                <ul class="todo-body">
+                </ul>
+              </div>
+              <div class="delete"></div>
+            </li>
+            <li class="todo creating">
+              <header class="todo-header">
+                <span>
+                  <input type="text" class="" placeholder="무슨 일이 일어나고 있나요?" autofocus>
+                </span>
+              </header>
+              <ul class="todo-body">
+                <li class="buttons">
+                  <label class="red" for="red"><input type="radio" name="p" id="red">🔥</label>
+                  <label class="yellow" for="yellow"><input type="radio" name="p" id="yellow">⚡</label>
+                  <label class="green" for="green"><input type="radio" name="p" id="green">🌱</label>
+                  <label class="blue" for="blue"><input type="radio" name="p" id="blue">💧</label>
+                </li>
+              </ul>
+            </li>
+            <li class="add-todo">
+              <h3>+ Add a todo</h3>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>

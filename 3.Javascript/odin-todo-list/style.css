@@ -1,0 +1,67 @@
+@import url('../../normalize.css');
+@import url('./css/left.css');
+@import url('./css/right.css');
+
+/* @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap'); */
+
+:root {
+    --left: #B08797;
+    --left-text: #ffffff;
+    --project: #EBECF0;
+    --todo: #ffffff;
+    --todo-hover: #f4f5f7;
+    --box-shadow: 0 1px 0 #091e4240;
+    --done: #bbb;
+    --hover: #dedfe4;
+    --red: #ff4444;
+    --yellow: #ffbb33;
+    --green: #00c851;
+    --blue: #33b5e5;
+    --add-todo: #dbdce0;
+}
+
+body {
+    background-image: url('../../assets/sunset-g73be96468_1920.jpg');
+    overflow: hidden;
+    font-size: 14px;
+    /* font-family: 'Noto Sans KR', sans-serif; */
+}
+
+.container {
+    display: flex;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+h3 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: normal;
+    height: 28px;
+    line-height: 28px;
+    padding: 4px 8px;
+    border-radius: 3px;
+}
+
+input, textarea {
+    background-color: transparent;
+    border: none;
+    line-height: 24px;
+}
+
+input:focus, textarea:focus {
+    background-color: #ffffff;
+}
+
+button {
+    background-color: transparent;
+    border: none;
+}
+
+button:hover {
+    cursor: pointer;
+}

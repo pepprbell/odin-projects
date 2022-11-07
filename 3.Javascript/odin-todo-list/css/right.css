@@ -1,0 +1,368 @@
+.right {
+    display: flex;
+    width: calc(100vw - 250px);
+    padding: 20px;
+    user-select: none;
+}
+
+.section {
+    width: 272px;
+    margin: 0 4px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+}
+
+header > span {
+    display: flex;
+}
+
+.project {
+    width: 100%;
+    background-color: var(--project);
+    border-radius: 3px;
+}
+
+.project-header {
+    height: 40px;
+    box-sizing: border-box;
+    padding: 8px 14px;
+}
+
+.project-header input {
+    width: 210px;
+    font-weight: 600;
+    line-height: 24px;
+    cursor: pointer;
+    box-sizing: border-box;
+    border-radius: 3px;
+}
+
+.project-header input:focus {
+    cursor: text;
+    outline: 2px solid;
+}
+
+.project-header > .material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 300,
+  'GRAD' 0,
+  'opsz' 24;
+}
+
+.project-header > .material-symbols-outlined:hover {
+    background-color: var(--hover);
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.project-body > li {
+    position: relative;
+    margin: 0 8px 8px;
+    box-shadow: var(--box-shadow);
+    border-radius: 3px;
+}
+
+.add-todo {
+    padding: 0 10px 8px;
+    border-radius: 3px;
+    color: #555;
+}
+
+.add-todo > h3:hover {
+    background-color: var(--add-todo);
+    cursor: pointer;
+    color: #000;
+}
+
+.done {
+    text-decoration: line-through;
+    color: var(--done);
+}
+
+.todo {
+    position: relative;
+    background-color: var(--todo);
+    border-radius: 3px;
+    width: 256px;
+    height: fit-content;
+    padding: 4px 8px;
+    box-sizing: border-box;
+    cursor: pointer;
+    z-index: 3;
+    transform-origin: left;
+}
+
+.todo:hover {
+    background-color: var(--todo-hover);
+}
+
+.todo-header {
+    height: 32px;
+}
+
+.priority {
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+    margin: 4px 0 0;
+}
+
+.todo-header p {
+    height: 24px;
+    padding: 0;
+    text-indent: 4px;
+    margin: 3px 0 5px 0;
+    line-height: 24px;
+}
+
+.expand > .todo-header input {
+    height: 24px;
+    padding: 0;
+    text-indent: 4px;
+    margin: 3px 0 5px 0;
+    width: 220px;
+}
+
+.todo-header label {
+    position: relative;
+    width: 14px;
+    height: 14px;
+    margin: 8px 2px 10px 0;
+    color: transparent;
+    outline: #bbb 1px solid;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.todo-header input[type=checkbox] {
+    width: 0;
+    height: 0;
+}
+
+.todo-header label:has(input[type=checkbox]:checked) {
+    background-color: var(--done);
+    outline: var(--done) 1px solid;
+    color: #ffffff;
+}
+
+.todo-header label span {
+    position: absolute;
+    left: -2px;
+    top: -2px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.delete {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: transparent;
+    width: 0px;
+    height: 100%;
+    background-color: var(--red);
+    opacity: 1;
+    top: 0;
+    right: 0;
+    z-index: 3;
+    border-radius: 0 3px 3px 0;
+    transition: 0.3s;
+}
+
+.delete::before {
+    content: '';
+    height: 100%;
+    position: absolute;
+    left: 0;
+    background-color: var(--todo);
+    border-radius: 0 100px 100px 0;
+    box-shadow: 2px 0 0 #091e4240;
+}
+
+.delete > span {
+    margin-left: 3px;
+}
+
+.delete-hover {
+    width: 40px;
+    opacity: 1;
+    color: var(--todo);
+    transition-property: width opacity color;
+    transition: 0.3s 0 0.1s;
+}
+
+.delete-hover::before {
+    width: 3px;
+}
+
+.delete-hover.priority {
+    width: 10px;
+    margin-right: 37px;
+}
+
+.due {
+    background-color: var(--project);
+    display: flex;
+    position: relative;
+    align-items: center;
+    width: fit-content;
+    height: 18px;
+    padding: 0 6px 0 4px;
+    line-height: 18px;
+    font-size: 12px;
+    border-radius: 3px;
+    margin-bottom: 2px;
+}
+
+.due > p {
+    display: inline;
+    margin: 0 0 0 2px;
+}
+
+.due > .material-symbols-outlined {
+    font-size: 14px;
+    line-height: 18px;
+}
+
+.todo-body li {
+    min-height: 32px;
+    box-sizing: border-box;
+    line-height: 24px;
+    margin: 4px 0;
+    background-color: var(--project);
+    border-radius: 3px;
+}
+
+.todo-body li:hover {
+    background-color: var(--hover);
+    cursor: pointer;
+}
+
+.todo-body li:last-child {
+    background-color: transparent;
+}
+
+.desc {
+    display: block;
+    width: 100%;
+    min-height: 32px;
+    height: fit-content;
+    margin: 0;
+    padding: 4px 8px;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.desc:focus, li:has(.desc:focus) {
+    cursor: text;
+}
+
+.desc:empty::before {
+    content: 'Add a description';
+    color: #555;
+}
+
+.desc:focus {
+    background-color: #ffffff;
+}
+
+.todo-body h3 {
+    position: relative;
+    line-height: 24px;
+}
+
+.todo-body li:has(input[type=date]:focus) {
+    background-color: #ffffff;
+    outline: 2px inset;
+    outline-offset: -1px;
+}
+
+.todo-body input[type=date] {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    padding: 0;
+    opacity: 0;
+}
+
+.todo-body input[type=date]::-webkit-calendar-picker-indicator {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    cursor: pointer;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 0;
+}
+
+.buttons label {
+    width: 52px;
+    height: 24px;
+    border-radius: 8px;
+    opacity: 0.6;
+    text-align: center;
+    user-select: none;
+}
+
+.buttons label:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.buttons input[type=radio] {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.buttons label:has(input[type=radio]:checked) {
+    opacity: 1;
+}
+
+.expand {
+    cursor: default;
+}
+
+.expand:hover {
+    background-color: var(--todo);
+}
+
+.creating {
+}
+
+.creating:hover {
+    background-color: var(--todo);
+    cursor: default;
+}
+
+.creating span, .creating input {
+    width: 100%;
+    outline: none;
+    background-color: transparent;
+}
+
+.red {
+    background-color: var(--red);
+}
+.yellow {
+    background-color: var(--yellow);
+}
+.green {
+    background-color: var(--green);
+}
+.blue {
+    background-color: var(--blue);
+}
