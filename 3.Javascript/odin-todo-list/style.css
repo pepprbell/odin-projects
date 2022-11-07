@@ -5,8 +5,9 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap'); */
 
 :root {
-    --left: #B08797;
+    --left: #F29F8Da0;
     --left-text: #ffffff;
+    --left-hover: #ad6e7ca0;
     --project: #EBECF0;
     --todo: #ffffff;
     --todo-hover: #f4f5f7;
