@@ -3,10 +3,13 @@
     width: calc(100vw - 250px);
     padding: 20px;
     user-select: none;
+    overflow: scroll;
+    flex-wrap: nowrap;
 }
 
 .section {
     width: 272px;
+    min-width: 272px;
     margin: 0 4px;
 }
 
@@ -45,7 +48,7 @@ header > span {
     outline: 2px solid;
 }
 
-.project-header > .material-symbols-outlined {
+.more > .material-symbols-outlined {
   font-variation-settings:
   'FILL' 0,
   'wght' 300,
@@ -53,10 +56,32 @@ header > span {
   'opsz' 24;
 }
 
-.project-header > .material-symbols-outlined:hover {
+.more > .material-symbols-outlined:hover {
     background-color: var(--hover);
     border-radius: 3px;
     cursor: pointer;
+}
+
+.project-delete {
+    display: flex;
+    position: absolute;
+    align-items: center;
+    background-color: var(--todo);
+    color: var(--red);
+    width: 200px;
+    height: 40px;
+    top: 54px;
+    padding: 6px;
+    box-sizing: border-box;
+    z-index: 9;
+    border-radius: 3px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 5px;
+    border: rgba(0, 0, 0, 0.14) 1px solid;
+}
+
+.project-delete p {
+    margin: 0 3px;
+    padding-bottom: 2px;
 }
 
 .project-body > li {
@@ -76,6 +101,33 @@ header > span {
     background-color: var(--add-todo);
     cursor: pointer;
     color: #000;
+}
+
+.add-project {
+    background-color: var(--project);
+    height: 40px;
+    display: flex;
+    opacity: 0.7;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-project:hover {
+    cursor: pointer;
+    background-color: var(--hover);
+}
+
+.creating-project {
+    opacity: 1;
+}
+
+.creating-project ul {
+    padding: 8px 0;
+}
+
+.creating-project:hover {
+    cursor: default;
+    background-color: var(--project);
 }
 
 .done {
@@ -338,9 +390,6 @@ header > span {
 
 .expand:hover {
     background-color: var(--todo);
-}
-
-.creating {
 }
 
 .creating:hover {
