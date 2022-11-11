@@ -5,9 +5,10 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap'); */
 
 :root {
-    --left: #F29F8Da0;
+    --name: #152732;
+    --left: #152732e0;
     --left-text: #ffffff;
-    --left-hover: #ad6e7ca0;
+    --left-hover: #758B8C50;
     --project: #EBECF0;
     --todo: #ffffff;
     --todo-hover: #f4f5f7;
@@ -22,7 +23,7 @@
 }
 
 body {
-    background-image: url('../../assets/sunset-g73be96468_1920.jpg');
+    background-image: url('../../assets/todo-background.jpg');
     overflow: hidden;
     font-size: 14px;
     /* font-family: 'Noto Sans KR', sans-serif; */
@@ -76,4 +77,9 @@ button:hover {
     box-shadow: inset 0 0 16px 16px #00000050;
     border: solid 5px transparent;
     border-radius: 10px;
+}
+
+::-webkit-scrollbar-button,
+::-webkit-scrollbar-corner {
+    display: none;
 }

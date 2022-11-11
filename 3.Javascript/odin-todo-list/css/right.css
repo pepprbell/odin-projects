@@ -117,6 +117,10 @@ header > span {
     background-color: var(--hover);
 }
 
+.add-project::before {
+    content: '+ Add a project';
+}
+
 .creating-project {
     opacity: 1;
 }
@@ -128,6 +132,10 @@ header > span {
 .creating-project:hover {
     cursor: default;
     background-color: var(--project);
+}
+
+.creating-project input::before {
+    content: '무슨 일이 일어나고 있나요?';
 }
 
 .done {
@@ -224,6 +232,7 @@ header > span {
     z-index: 3;
     border-radius: 0 3px 3px 0;
     transition: 0.3s;
+    cursor: pointer;
 }
 
 .delete::before {

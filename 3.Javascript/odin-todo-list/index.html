@@ -11,6 +11,9 @@
   <title>Todo List</title>
 </head>
 <body>
+  <div class="name">
+    <input type="text" value="Todo">
+  </div>
   <div class="container">
     <div class="left">
       <ul>
@@ -23,7 +26,7 @@
         <div class="project">
           <header class="project-header">
             <input value="프로젝트 1"></input>
-            <span class="material-symbols-outlined md-24 more">more_horiz</span>
+            <span class="material-symbols-outlined more">more_horiz</span>
           </header>
           <ul class="project-body">
             <li>
@@ -36,7 +39,7 @@
                 <div class="priority green delete-hover"></div>
               </header>
               <div class="due">
-                <span class="material-symbols-outlined md-18">calendar_today</span>
+                <span class="material-symbols-outlined">calendar_today</span>
                 <p>11/06</p>
               </div>
               </div>
@@ -51,10 +54,8 @@
                   </span>
                   <div class="priority yellow"></div>
                 </header>
-                <ul class="todo-body">
-                </ul>
               </div>
-              <div class="delete"></div>
+              <div class="delete"><span class="material-symbols-outlined">delete</span></div>
             </li>
             <li>
               <div class="todo expand">
@@ -89,9 +90,9 @@
           <header class="project-header">
             <input value="프로젝트 2"></input>
             <div class="more">
-              <span class="material-symbols-outlined md-24">more_horiz</span>
+              <span class="material-symbols-outlined">more_horiz</span>
               <!-- <div class="project-delete">
-                <span class="material-symbols-outlined md-24">delete</span>
+                <span class="material-symbols-outlined">delete</span>
                 <p>Delete Project</p>
               </div> -->
             </div>
@@ -132,6 +133,37 @@
           </ul>
         </div>
       </div>
+  
+      <div class="section">
+        <div class="project">
+          <header class="project-header">
+            <input value="프로젝트 3"></input>
+            <div class="more">
+              <span class="material-symbols-outlined">more_horiz</span>
+            </div>
+          </header>
+          <ul class="project-body">
+            <li class="todo creating">
+              <header class="todo-header">
+                <span>
+                  <input type="text" class="" placeholder="무슨 일이 일어나고 있나요?" autofocus>
+                </span>
+              </header>
+              <ul class="todo-body">
+                <li class="buttons">
+                  <label class="red" for="red"><input type="radio" name="p" id="red">🔥</label>
+                  <label class="yellow" for="yellow"><input type="radio" name="p" id="yellow">⚡</label>
+                  <label class="green" for="green"><input type="radio" name="p" id="green">🌱</label>
+                  <label class="blue" for="blue"><input type="radio" name="p" id="blue">💧</label>
+                </li>
+              </ul>
+            </li>
+            <li class="add-todo">
+              <h3>+ Add a todo</h3>
+            </li>
+          </ul>
+        </div>
+      </div>
 
       <div class="section">
         <div class="project creating-project">
@@ -149,7 +181,6 @@
 
       <div class="section">
         <div class="project add-project">
-          <h3>+ Add a project</h3>
         </div>
       </div> 
       <div class="section">
