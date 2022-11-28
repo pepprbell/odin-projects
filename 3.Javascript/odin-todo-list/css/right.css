@@ -63,25 +63,30 @@ header > span {
 }
 
 .project-delete {
-    display: flex;
+    display: none;
     position: absolute;
     align-items: center;
     background-color: var(--todo);
     color: var(--red);
     width: 200px;
     height: 40px;
-    top: 54px;
+    top: 100px;
     padding: 6px;
     box-sizing: border-box;
     z-index: 9;
     border-radius: 3px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 5px;
     border: rgba(0, 0, 0, 0.14) 1px solid;
+    cursor: pointer;
 }
 
 .project-delete p {
     margin: 0 3px;
     padding-bottom: 2px;
+}
+
+.display {
+    display: flex;
 }
 
 .project-body > li {
@@ -399,6 +404,13 @@ header > span {
 
 .expand:hover {
     background-color: var(--todo);
+}
+
+.creating-project .creating {
+    background-color: var(--todo);
+    height: 40px;
+    padding: 4px 8px;
+    box-sizing: border-box;
 }
 
 .creating:hover {
