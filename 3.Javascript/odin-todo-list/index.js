@@ -55,10 +55,19 @@ function editDOM() {
     const projectHeader = tag('header','project-header')
     const projectName = tag('input')
     projectName.value = value
+
     const more = tag('div','more')
+    const deleteDiv = tag('div','project-delete')
+    const deleteP = tag('p')
+    deleteP.innerHTML = 'Delete Project'
+    deleteDiv.appendChild(iconLibrary('delete'))
+    deleteDiv.appendChild(deleteP)
+
     more.appendChild(iconLibrary('more'))
+    more.appendChild(deleteDiv)
     projectHeader.appendChild(projectName)
     projectHeader.appendChild(more)
+
     project.insertBefore(projectHeader,projectBody)
 
     // create 'add a todo' button
@@ -105,6 +114,7 @@ function editDOM() {
     todoBody.appendChild(buttons())
     todo.appendChild(todoBody)
     savedProjectBody.insertBefore(todo, savedProjectBody.lastChild)
+
     todoInput.focus()
   }
   const saveTodo = () => {}
@@ -115,31 +125,87 @@ function editDOM() {
 }
 
 function operate() {
-  function addProject (e) {
-    if (e.type != 'focusout' && e.keyCode != 13) { return }
-    if (e.target.value === '') { return }
-    const savedProjectBody = dom.saveProject(e.target.value)
-    dom.newTodo(savedProjectBody)
+  function saveProject (e) {
+    if (e.type == 'keydown' && e.keyCode != 13) { return }
 
-  }
+    const writingProject = document.querySelector('.project.creating-project input')
+    if (writingProject.value === '') { return }
+    const savedProjectBody = dom.saveProject(writingProject.value)
+    dom.newTodo(savedProjectBody)
+    
+    addEvent()
+    }
   function editProject () {}
   function deleteProject () {}
-  function addTodo () {}
+  function closeCreatingProject () {}
+  function addTodo (e) {
+    const projectBody = e.target.parentNode.parentNode
+    const isAdding = document.querySelector('.todo.creating')
+    if (projectBody.contains(isAdding)) { return }
+    dom.newTodo(projectBody)
+  }
+  function saveTodo (e) {
+    console.log(e)
+    if (e.target.value === '') { closeCreatingTodo(e) }
+  }
+  function closeCreatingTodo (e) {
+    console.log(e)
+  }
   function editTodo () {}
-  function saveTodo () {}
   function deleteTodo () {}
-  return { addProject, }
+  function checkInput () {
+    const todo = document.querySelector('.creating')
+    const project = document.querySelector('.creating-todo')
+    console.log('check')
+    if (todo) { saveTodo }
+    if (project) { closeCreatingProject }
+  }
+  function detectClick(e) {
+    e.preventDefault()
+    const writingProject = document.querySelector('.project.creating-project')
+    const writingTodo = document.querySelector('.todo.creating')
+    if (writingProject && !writingProject.contains(e.target)) {
+      saveProject(e)
+    }
+    if (writingTodo && !writingTodo.contains(e.target)) {
+      saveTodo(e)
+    }
+  }
+
+  return { saveProject, addTodo, saveTodo, checkInput, detectClick }
 }
 
 function addEvent() {
-  const initialEvent = () => {}
-  const newProject = () => {}
+  const addTodos = [...document.querySelectorAll('.add-todo h3')]
+  addTodos.forEach(addTodo => addTodo.addEventListener('click',run.addTodo))
+
+  // const creatingTodo = document.querySelector('#todoCreating')
+  // const creatingProject = document.querySelector('#projectCreating')
+  // creatingTodo ? creatingTodo.addEventListener('focusout',run.saveTodo) : ''
+  // creatingProject ? creatingProject.addEventListener('focusout',run.saveProject) : ''
+  
+  // const right = document.querySelector('.right')
+  // right.addEventListener('click', run.checkInput)
+
+  const initialEvent = () => {
+    document.addEventListener('click', run.detectClick)
+    const input = document.querySelector('#projectCreating')
+    input.addEventListener('keydown', run.saveProject)
+    // input.addEventListener('focusout', run.saveProject)
+
+    // const right = document.querySelector('.right')
+    // right.addEventListener('click', run.checkInput)
+  }
+  const newProject = () => {
+    const newDom = document.querySelector('.project.creating-project')
+    newDom.addEventListener('keydown', run.saveProject)
+  }
   const newTodo = () => {}
   const savedTodo = () => {}
   const expandedTodo = () => {}
 
   const newProjectList = () => {}
-  return {}
+  return { initialEvent }
 }
 
 // let a = {'key':'123'}
@@ -147,7 +213,8 @@ function addEvent() {
 
 const dom = editDOM()
 const run = operate()
+const clicks = addEvent()
 
-const input = document.querySelector('#activeInput')
-input.addEventListener('keydown', run.addProject)
-input.addEventListener('focusout', run.addProject)
+clicks.initialEvent()
+
+
