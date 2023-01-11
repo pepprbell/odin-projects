@@ -134,6 +134,15 @@ header > span {
     padding: 8px 0;
 }
 
+.creating-project li:hover {
+    cursor: default;
+}
+
+.creating-project input {
+    width: 100%;
+}
+
+
 .creating-project:hover {
     cursor: default;
     background-color: var(--project);
@@ -148,7 +157,7 @@ header > span {
     color: var(--done);
 }
 
-.todo {
+.todo, .creating-project li {
     position: relative;
     background-color: var(--todo);
     border-radius: 3px;
@@ -161,7 +170,7 @@ header > span {
     transform-origin: left;
 }
 
-.todo:hover {
+.todo:hover, .creating-project li {
     background-color: var(--todo-hover);
 }
 
@@ -418,7 +427,7 @@ header > span {
     cursor: default;
 }
 
-.creating span, .creating input {
+.creating-project input, .creating span, .creating input {
     width: 100%;
     outline: none;
     background-color: transparent;

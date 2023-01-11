@@ -145,11 +145,14 @@ function operate() {
     dom.newTodo(projectBody)
   }
   function saveTodo (e) {
-    console.log(e)
-    if (e.target.value === '') { closeCreatingTodo(e) }
+    const writingTodo = document.querySelector('.todo.creating')
+    const writingInput = document.querySelector('.todo.creating input')
+    console.log(writingInput)
+    if (writingInput.value === '') { closeCreatingTodo(writingTodo); return }
+    
   }
-  function closeCreatingTodo (e) {
-    console.log(e)
+  function closeCreatingTodo (todo) {
+    console.log(todo)
   }
   function editTodo () {}
   function deleteTodo () {}

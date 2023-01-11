@@ -38,10 +38,12 @@
 }
 
 .left li {
+    width: 250px;
     height: 32px;
     color: var(--left-text);
     display: flex;
     padding: 0 12px;
+    box-sizing: border-box;
 }
 
 .left li h2 {
@@ -50,6 +52,9 @@
     font-weight: bold;
     line-height: 32px;
     margin: 0 0 0 6px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
 }
 
 .left li span {
