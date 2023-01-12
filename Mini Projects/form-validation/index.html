@@ -14,9 +14,8 @@
     <form>
       <div>
         <label for="email">E-MAIL</label>
-        <input type="email" id="email">
+        <input type="email" id="email" autocomplete="email">
       </div>
-      <p name="email"></p>
       <div>
         <label for="country">COUNTRY</label>
         <select name="country" id="country">
@@ -24,22 +23,18 @@
           <option value="canada">Canada</option>
         </select>
       </div>
-      <p name="country"></p>
       <div>
         <label for="zip">ZIP CODE</label>
         <input name="zip" type="number" id="zip">
       </div>
-      <p name="zip"></p>
       <div>
         <label for="password">PASSWORD</label>
-        <input name="password" type="password" id="password">
+        <input name="password" type="password" id="password" autocomplete="new-password">
       </div>
-      <p name="password"></p>
       <div>
         <label for="passConfirm">PASSWORD<br>CONFIRMATION</label>
-        <input name="passConfirm" type="password" id="passConfirm">
+        <input name="passConfirm" type="password" id="passConfirm" autocomplete="new-password">
       </div>
-      <p name="passConfirm"></p>
       <button>SUBMIT</button>
     </form>
   </div>

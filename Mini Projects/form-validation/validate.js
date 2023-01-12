@@ -1,21 +1,26 @@
 const button = document.querySelector('button')
 const password = document.querySelector('#password')
+const passConfirm = document.querySelector('#passConfirm')
 const form = document.querySelector('form')
 
 const inputs = document.querySelectorAll('input')
 const select = document.querySelector('select')
 
 inputs.forEach(input => {
-  input.addEventListener('focusout', e => validate(e.target))
+  input.addEventListener('change', e => validate(e.target))
 });
-select.addEventListener('focusout', e => validate(e.target))
+select.addEventListener('change', e => validate(e.target))
 
 button.addEventListener('click', handleSubmit)
 
+//todo:
+//passconf not working
+// if문은 잘 작동하는데 report가 안되는 듯 함
+
 function validate(target) {
-  const filled = isRequired(target)
-  const regular = isRegular(target)
   const confirm = isSame(target)
+  const regular = isRegular(target)
+  const filled = isRequired(target)
 
   if (filled && regular && confirm) {
     return true
@@ -46,6 +51,7 @@ function isRequired(target) {
     return true
   }
   target.setCustomValidity(`This input must be filled`)
+  target.reportValidity()
   return false
 }
 
@@ -61,7 +67,7 @@ function isRegular(target) {
       target.setCustomValidity(`Password must contain at least 1 uppercase letter, 1 lowercase letter, 1 number, and 8 characters.`)
       break;
     case 'zip':
-      re = /\d{5}/g
+      re = /^[0-9]{5}$/g
       target.setCustomValidity(`Zip code contains five digits`)
       break;
   }
@@ -69,13 +75,17 @@ function isRegular(target) {
     target.setCustomValidity('')
     return true
   }
+  target.reportValidity()
   return false
 }
 
 function isSame(target) {
-  if (target.id != 'passConfirm') { return true }
-  if (target.value == password.value) {
+  if (target.id != 'passConfirm' && target.id != 'password') { return true }
+  if (target.value == password.value && target.value == passConfirm.value) {
+    target.setCustomValidity('')
     return true
   }
   target.setCustomValidity(`Password doesn't match password confirmation`)
+  target.reportValidity()
+  return false
 }
