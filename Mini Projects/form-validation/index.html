@@ -6,34 +6,42 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/normalize.css">
   <link rel="stylesheet" href="/base.css">
+  <link rel="stylesheet" href="style.css">
   <title>Document</title>
 </head>
 <body>
   <div class="container">
-    <div>
-      <label for="email">E-MAIL</label>
-      <input type="email" id="email">
-    </div>
-    <div>
-      <label for="country">COUNTRY</label>
-      <select name="country" id="country">
-        <option value="korea">Korea</option>
-        <option value="canada">Canada</option>
-      </select>
-    </div>
-    <div>
-      <label for="zip">ZIP CODE</label>
-      <input name="zip" type="number" id="zip">
-    </div>
-    <div>
-      <label for="password">PASSWORD</label>
-      <input name="password" type="password" id="password">
-    </div>
-    <div>
-      <label for="passConfirm">PASSWORD<br>CONFIRMATION</label>
-      <input name="passConfirm" type="password" id="passConfirm">
-    </div>
-    <button>SUBMIT</button>
+    <form>
+      <div>
+        <label for="email">E-MAIL</label>
+        <input type="email" id="email">
+      </div>
+      <p name="email"></p>
+      <div>
+        <label for="country">COUNTRY</label>
+        <select name="country" id="country">
+          <option value="korea">Korea</option>
+          <option value="canada">Canada</option>
+        </select>
+      </div>
+      <p name="country"></p>
+      <div>
+        <label for="zip">ZIP CODE</label>
+        <input name="zip" type="number" id="zip">
+      </div>
+      <p name="zip"></p>
+      <div>
+        <label for="password">PASSWORD</label>
+        <input name="password" type="password" id="password">
+      </div>
+      <p name="password"></p>
+      <div>
+        <label for="passConfirm">PASSWORD<br>CONFIRMATION</label>
+        <input name="passConfirm" type="password" id="passConfirm">
+      </div>
+      <p name="passConfirm"></p>
+      <button>SUBMIT</button>
+    </form>
   </div>
   <script src="./validate.js"></script>
 </body>

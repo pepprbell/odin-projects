@@ -1,9 +1,6 @@
 const button = document.querySelector('button')
-const email = document.querySelector('#email')
-const country = document.querySelector('#country')
-const zip = document.querySelector('#zip')
 const password = document.querySelector('#password')
-const passConfirm = document.querySelector('#passConfirm')
+const form = document.querySelector('form')
 
 const inputs = document.querySelectorAll('input')
 const select = document.querySelector('select')
@@ -19,6 +16,7 @@ function validate(target) {
   const filled = isRequired(target)
   const regular = isRegular(target)
   const confirm = isSame(target)
+
   if (filled && regular && confirm) {
     return true
   } else {
@@ -36,7 +34,8 @@ function handleSubmit() {
   })
   let validation = validate(select)
   if (submit && validation) {
-    console.log('submitted')
+    form.reset()
+    alert('submitted')
   } else {
     console.log('error')
   }
@@ -46,6 +45,7 @@ function isRequired(target) {
   if (target.value) {
     return true
   }
+  target.setCustomValidity(`This input must be filled`)
   return false
 }
 
@@ -54,15 +54,19 @@ function isRegular(target) {
   switch (target.id) {
     case 'email':
       re = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g
+      target.setCustomValidity(`Invalid email`)
       break;
     case 'password':
       re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm
+      target.setCustomValidity(`Password must contain at least 1 uppercase letter, 1 lowercase letter, 1 number, and 8 characters.`)
       break;
     case 'zip':
       re = /\d{5}/g
+      target.setCustomValidity(`Zip code contains five digits`)
       break;
   }
   if (re.test(target.value)) {
+    target.setCustomValidity('')
     return true
   }
   return false
@@ -73,4 +77,5 @@ function isSame(target) {
   if (target.value == password.value) {
     return true
   }
+  target.setCustomValidity(`Password doesn't match password confirmation`)
 }
