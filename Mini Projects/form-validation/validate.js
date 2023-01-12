@@ -41,8 +41,6 @@ function handleSubmit() {
   if (submit && validation) {
     form.reset()
     alert('submitted')
-  } else {
-    console.log('error')
   }
 }
 
