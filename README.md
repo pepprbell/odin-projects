@@ -18,3 +18,6 @@ I've done:
 - Library
 - Tic Tac Toe
 - Restaurant Page (note: not working, webpack and ref don't work for mystic reason)
+
+### +. Mini Projects
+- Form Validation
