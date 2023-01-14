@@ -13,13 +13,9 @@ select.addEventListener('change', e => validate(e.target))
 
 button.addEventListener('click', handleSubmit)
 
-//todo:
-//passconf not working
-// if문은 잘 작동하는데 report가 안되는 듯 함
-
 function validate(target) {
-  const confirm = isSame(target)
   const regular = isRegular(target)
+  const confirm = isSame(target)
   const filled = isRequired(target)
 
   if (filled && regular && confirm) {
@@ -79,7 +75,8 @@ function isRegular(target) {
 
 function isSame(target) {
   if (target.id != 'passConfirm' && target.id != 'password') { return true }
-  if (target.value == password.value && target.value == passConfirm.value) {
+  if ((target.value == password.value && target.value == passConfirm.value)
+    || password.value == '' || passConfirm.value == '') {
     target.setCustomValidity('')
     return true
   }
