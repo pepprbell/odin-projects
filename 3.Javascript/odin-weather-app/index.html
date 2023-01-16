@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <link rel="stylesheet" href="/normalize.css">
-  <link rel="stylesheet" href="/base.css">
   <link rel="stylesheet" href="style.css">
   <title>Document</title>
 </head>
@@ -14,34 +13,34 @@
   <div class="container">
     <div class="info-left">
       <h2 id="weather">
-        <span class="material-symbols-outlined">sunny<span>
+        <span class="material-symbols-outlined">sunny</span>
+        Sunny
       </h2>
-      <h3 id="place"></h3>
-      <p id="time"></p>
-      <h2 id="temperature"></h2>
+      <h3 id="place">Heaven</h3>
+      <p id="time">Monday, 16th Jan '23 <h3>2:04 pm</h3></p>
+      <h2 id="temperature">38C</h2>
       <div>
-        <span class="material-symbols-outlined">search</span>
+        <span class="material-symbols-outlined search-icon">search</span>
         <input type="text" id="search">
-      </div>
-      <div>
-        <span class="material-symbols-outlined">device_thermostat</span>
-        <p>Feels like<br><span id="feels_like" class="h3"></span></p>
-      </div>
-      <div>
-        <span class="material-symbols-outlined">humidity_percentage</span>
-        <p>Humidity<br><span id="humidity" class="h3"></span></p>
-      </div>
-      <div>
-        <span class="material-symbols-outlined">umbrella</span>
-        <p>Chance of Rain<br><span id="rain" class="h3"></span></p>
-      </div>
-      <div>
-        <span class="material-symbols-outlined">air</span>
-        <p>Wind Speed<br><span id="wind" class="h3"></span></p>
       </div>
     </div>
     <div class="info-right">
-      
+      <div>
+        <span class="material-symbols-outlined">device_thermostat</span>
+        <span><p>Feels like</p><h3 id="feels_like">32</h3></span>
+      </div>
+      <div>
+        <span class="material-symbols-outlined">humidity_percentage</span>
+        <span><p>Humidity</p><h3 id="humidity">12</h3></span>
+      </div>
+      <div>
+        <span class="material-symbols-outlined">umbrella</span>
+        <span><p>Chance of Rain</p><h3 id="rain">12</h3></span>
+      </div>
+      <div>
+        <span class="material-symbols-outlined">air</span>
+        <span><p>Wind Speed</p><h3 id="wind">12</h3></span>
+      </div>
     </div>
   </div>
   <script src="index.js"></script>
