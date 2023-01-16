@@ -9,10 +9,17 @@ body {
     color: var(--font);
     margin: 0;
     overflow: hidden;
-    padding: 50px;
+    padding: 60px;
     box-sizing: border-box;
     width: 100vw;
     height: 100vh;
+    background-image: url('./pic/architecture-g3eed0cb65_1920.jpg');
+}
+
+@media (min-width: 1100px) {
+    body {
+        padding: 72px 12vw;
+    }
 }
 
 .material-symbols-outlined {
@@ -31,12 +38,14 @@ input {
     color: var(--font);
     height: 24px;
     padding-left: 28px;
+    padding-bottom: 3px;
     margin: 10px 0;
 }
 
 h2 {
     font-size: 48px;
     font-weight: bold;
+    line-height: 35px;
     margin: 0 0 10px 0;
 }
 
@@ -69,7 +78,7 @@ p {
 
 .info-right > div {
     display: flex;
-    margin: 0 0 14px;
+    margin: 0 0 30px;
     align-items: space-between;
 }
 
@@ -87,10 +96,17 @@ p {
     font-size: 30px;
 }
 
+#weather .material-symbols-outlined {
+    font-size: 25px;
+    margin: 5px 0;
+    font-variation-settings:
+    'wght' 600
+}
+
 #time {
-    margin: 14px 0 0;
+    margin: 24px 0 0;
 }
 
 #temperature {
-    margin: 20px 0 24px;
+    margin: 36px 0 36px;
 }
