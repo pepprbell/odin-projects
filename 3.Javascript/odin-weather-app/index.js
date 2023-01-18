@@ -2,7 +2,6 @@ const key = '855ca86de94d46e59cd4dd9314b422d1'
 const input = document.querySelector('input')
 let timezone = 32400
 
-window.addEventListener('load', console.log('loading'))
 input.addEventListener('keydown', keyHandler)
 
 setTime()
@@ -45,7 +44,6 @@ function getWeather(place) {
         console.log(err)
       })
     
-    console.log(res)
     if (res.cod != 200) {
       input.setCustomValidity(`${res.message}`)
       input.reportValidity()
@@ -63,7 +61,6 @@ function getWeather(place) {
     weatherData = fetchWeather(place)
   } else {
     weatherData = fetchWeather(input.value)
-    console.log(weatherData)
   }
 
   weatherData.then(data => {
