@@ -14,40 +14,50 @@ function keyHandler(e) {
 }
 
 function getWeather() {
-  async function fetchGeocoding() {
-    const city_name = input.value.substring(0,1).toUpperCase()+input.value.substring(1).toLowerCase()
-    const url = `http://api.openweathermap.org/geo/1.0/direct?q=${city_name}&limit=1&appid=${key}`
-    const res = await fetch(url).catch(e => console.log(e))
+  // async function fetchGeocoding() {
+  //   const city_name = input.value.substring(0,1).toUpperCase()+input.value.substring(1).toLowerCase()
+  //   const url = `http://api.openweathermap.org/geo/1.0/direct?q=${city_name}&limit=1&appid=${key}`
+  //   let res;
+  //   const fetching = await fetch(url, { mode: 'cors' })
+  //     .then(response => response.json())
+  //     .then(data => {
+  //       res = [data[0].lat,data[0].lon]
+  //     })
+  //     .catch(e => console.log(e))
+  //   return res // [lat, lon]
+  // }
+
+  async function fetchWeather(city_name) {
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city_name}&appid=${key}`
+    let res;
+    const fetching = await fetch (url)
+      .then(response => response.json())
+      .then(data => {
+        res = data
+      })
+      .catch(err => console.log(err))
     console.log(res)
-    // return lat, lon
     return res
   }
 
-  async function fetchWeather() {
-    const url = `https://api.openweathermap.org/data/3.0/onecall?lat=${geo[0]}&lon=${geo[1]}&exclude=minutely,hourly,alerts&appid=${key}`
-    const res = await fetch(url).catch(err => console.log(err))
-    return res
-  }
-
-  // fetchGeocoding에서 lat, lon 받아와서 fetchWeather
-  const geo = fetchGeocoding(input.value)
-  const weatherData = fetchWeather()
+  // const geo = fetchGeocoding(input.value)
+  const weatherData = fetchWeather(input.value)
   // 데이터 표시
   showData(weatherData)
 }
 
 function showData(data) {
   // sunny, cloudy, rainy, weather_snowy
-  document.querySelector('#weather').innerHTML = `${weather} <span class="material-symbols-outlined">${weather_icon}</span>`
-  document.querySelector('#place').innerHTML = `${place}`
-  document.querySelector('#temperature').innerHTML = `${temperature}°C`
-  document.querySelector('#feels_like h3').innerHTML = `${feels_like}°C`
-  document.querySelector('#humidity h3').innerHTML = `${humidity}%`
-  document.querySelector('#rain h3').innerHTML = `${chance_of_rain}%`
-  document.querySelector('#wind h3').innerHTML = `${wind_speed}km/h`
+  document.querySelector('#weather').innerText = `${data.weather.main}`
+  document.querySelector('#place').innerHTML = `${data.name}`
+  document.querySelector('#temperature').innerHTML = `${Math.round(data.main.temp - 273.15)}°C`
+  document.querySelector('#feels_like h3').innerHTML = `${Math.round(data.main.feels_like - 273.15)}°C`
+  document.querySelector('#humidity h3').innerHTML = `${data.main.humidity}%`
+  document.querySelector('#wind h3').innerHTML = `${data.wind.speed}km/h`
 }
 
 function setTime() {
+  // 시차 적용
   const date = document.querySelector('#date')
   const time = document.querySelector('#time')
 
@@ -79,9 +89,9 @@ function setTime() {
   }
 
   if (second % 2) {
-    time.innerHTML = `${hour}<span>:</span>${minute} ${ampm}`
-  } else {
     time.innerHTML = `${hour}<span style='opacity:0'>:</span>${minute} ${ampm}`
+  } else {
+    time.innerHTML = `${hour}<span>:</span>${minute} ${ampm}`
   }
   
 }
