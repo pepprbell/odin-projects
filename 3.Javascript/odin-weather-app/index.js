@@ -8,12 +8,14 @@ input.addEventListener('keydown', keyHandler)
 setTime()
 setInterval(setTime, 1000)
 
+getWeather('Seoul')
+
 function keyHandler(e) {
   if (e.keyCode != '13') { return }
   getWeather()
 }
 
-function getWeather() {
+function getWeather(place) {
   // async function fetchGeocoding() {
   //   const city_name = input.value.substring(0,1).toUpperCase()+input.value.substring(1).toLowerCase()
   //   const url = `http://api.openweathermap.org/geo/1.0/direct?q=${city_name}&limit=1&appid=${key}`
@@ -41,19 +43,34 @@ function getWeather() {
   }
 
   // const geo = fetchGeocoding(input.value)
-  const weatherData = fetchWeather(input.value)
+  let weatherData;
+  if (place) {
+    weatherData = fetchWeather(place)
+  } else {
+    weatherData = fetchWeather(input.value)
+  }
+  
   // 데이터 표시
   showData(weatherData)
 }
 
-function showData(data) {
+function showData(promise) {
+  promise.then(res => setHTML(res))
   // sunny, cloudy, rainy, weather_snowy
-  document.querySelector('#weather').innerText = `${data.weather.main}`
-  document.querySelector('#place').innerHTML = `${data.name}`
-  document.querySelector('#temperature').innerHTML = `${Math.round(data.main.temp - 273.15)}°C`
-  document.querySelector('#feels_like h3').innerHTML = `${Math.round(data.main.feels_like - 273.15)}°C`
-  document.querySelector('#humidity h3').innerHTML = `${data.main.humidity}%`
-  document.querySelector('#wind h3').innerHTML = `${data.wind.speed}km/h`
+
+  function setHTML(data) {
+    const iconUrl = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`
+    console.log(data.name)
+    document.querySelector('#weather').innerHTML = `${data.weather[0].main}<span></span>`
+    document.querySelector('#weather span').style.backgroundImage = `url(${iconUrl})`
+
+    document.querySelector('#description').innerText = `${data.weather[0].description}`
+    document.querySelector('#place').innerText = `${data.name}`
+    document.querySelector('#temperature').innerText = `${Math.round(data.main.temp - 273.15)}°C`
+    document.querySelector('#feels_like h3').innerText = `${Math.round(data.main.feels_like - 273.15)}°C`
+    document.querySelector('#humidity h3').innerText = `${data.main.humidity}%`
+    document.querySelector('#wind h3').innerText = `${data.wind.speed}km/h`
+  }
 }
 
 function setTime() {
