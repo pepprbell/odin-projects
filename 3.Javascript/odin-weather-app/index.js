@@ -97,6 +97,47 @@ function showData(promise) {
   }
 
   function setBackground(data) {
+    const day = data.weather[0].icon.substring(data.weather[0].icon.length - 1)
+    const weather = data.weather[0].main
+    let imgUrl = './pic/'
+
+    switch (weather) {
+      case 'Clouds':
+        imgUrl += 'cloud'
+        break;
+      case 'Clear':
+        imgUrl += 'clear'
+        break
+      case 'Snow':
+        imgUrl += 'snow'
+        break
+      case 'Rain':
+      case 'Drizzle':
+      case 'Thunderstorm':
+        imgUrl += 'rain'
+        break
+      case 'Mist':
+      case 'Smoke':
+      case 'Haze':
+      case 'Dust':
+      case 'Fog':
+      case 'Sand':
+      case 'Dust':
+      case 'Ash':
+      case 'Squall':
+      case 'Tornado':
+        imgUrl += 'mist'
+        break
+    }
+    imgUrl += '_' + day + '.jpg'
+
+    document.querySelector('body').style.backgroundImage = `url(${imgUrl})`
+
+    if (day == 'd') {
+      document.documentElement.style.setProperty('--font', '#000000e0')
+    } else {
+      document.documentElement.style.setProperty('--font', '#ffffffe0')
+    }
     
   }
 }
@@ -112,8 +153,6 @@ function setTime() {
   let today = now.getDate()
 
   date.innerHTML = `${year}. ${month+1}. ${today}.`
-
-
 
   let hour = now.getHours()
   let minute = now.getMinutes()
