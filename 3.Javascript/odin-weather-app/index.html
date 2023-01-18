@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link rel="stylesheet" href="/odin-projects/normalize.css">
+  <link rel="stylesheet" href="style.css">
+  <title>Document</title>
+</head>
+<body>
+  <div class="container">
+    <div class="info-left">
+      <h2 id="weather">Weather<img src=""></img></h2>
+      <p id="description">description</p>
+      <h3 id="place">place</h3>
+      <p id="date">date</p><h3 id="time">time</h3>
+      <h2 id="temperature">temperature</h2>
+      <div>
+        <span class="material-symbols-outlined search-icon">search</span>
+        <input type="text" id="search" placeholder="Search Location">
+      </div>
+    </div>
+    <div class="info-right">
+      <div>
+        <span class="material-symbols-outlined">device_thermostat</span>
+        <span id="feels_like"><p>Feels like</p><h3>feels_like</h3></span>
+      </div>
+      <div>
+        <span class="material-symbols-outlined">humidity_percentage</span>
+        <span id="humidity"><p>Humidity</p><h3>humidity</h3></span>
+      </div>
+      <!-- <div>
+        <span class="material-symbols-outlined">umbrella</span>
+        <span id="rain"><p>Chance of Rain</p><h3>rain</h3></span>
+      </div> -->
+      <div>
+        <span class="material-symbols-outlined">air</span>
+        <span id="wind"><p>Wind Speed</p><h3>wind</h3></span>
+      </div>
+      <div>
+        <div id="wind_direction"></div>
+      </div>
+    </div>
+  </div>
+  <script src="index.js"></script>
+</body>
+</html>
