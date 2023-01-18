@@ -2,7 +2,7 @@ const key = '855ca86de94d46e59cd4dd9314b422d1'
 const input = document.querySelector('input')
 let timezone = 0
 
-// window.addEventListener('load', )
+window.addEventListener('load', console.log('loading'))
 input.addEventListener('keydown', keyHandler)
 
 setTime()
@@ -12,8 +12,14 @@ getWeather('Seoul')
 
 function keyHandler(e) {
   if (e.keyCode != '13') { return }
+  if (!input.value) { return }
   getWeather()
+  resetInput()
 }
+
+// todo
+// 
+// 
 
 function getWeather(place) {
   // async function fetchGeocoding() {
@@ -37,9 +43,20 @@ function getWeather(place) {
       .then(data => {
         res = data
       })
-      .catch(err => console.log(err))
+      .catch(err => {
+        console.log(err)
+      })
+    
     console.log(res)
-    return res
+    if (res.cod != 200) {
+      input.setCustomValidity(`${res.message}`)
+      input.reportValidity()
+      return false
+    } else {
+      input.setCustomValidity('')
+      return res
+    }
+
   }
 
   // const geo = fetchGeocoding(input.value)
@@ -48,21 +65,28 @@ function getWeather(place) {
     weatherData = fetchWeather(place)
   } else {
     weatherData = fetchWeather(input.value)
+    console.log(weatherData)
   }
-  
-  // 데이터 표시
-  showData(weatherData)
+
+  weatherData.then(data => {
+    if (data.cod == 200) {
+      showData(weatherData)
+    }
+  })
 }
 
 function showData(promise) {
-  promise.then(res => setHTML(res))
+  promise.then(res => {
+    setHTML(res)
+    setBackground(res)
+  })
   // sunny, cloudy, rainy, weather_snowy
 
   function setHTML(data) {
     const iconUrl = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`
-    console.log(data.name)
-    document.querySelector('#weather').innerHTML = `${data.weather[0].main}<span></span>`
-    document.querySelector('#weather span').style.backgroundImage = `url(${iconUrl})`
+
+    document.querySelector('#weather').innerHTML = `${data.weather[0].main}<img src=""></img>`
+    document.querySelector('#weather img').src = `${iconUrl}`
 
     document.querySelector('#description').innerText = `${data.weather[0].description}`
     document.querySelector('#place').innerText = `${data.name}`
@@ -70,6 +94,10 @@ function showData(promise) {
     document.querySelector('#feels_like h3').innerText = `${Math.round(data.main.feels_like - 273.15)}°C`
     document.querySelector('#humidity h3').innerText = `${data.main.humidity}%`
     document.querySelector('#wind h3').innerText = `${data.wind.speed}km/h`
+  }
+
+  function setBackground(data) {
+    
   }
 }
 
@@ -111,4 +139,8 @@ function setTime() {
     time.innerHTML = `${hour}<span>:</span>${minute} ${ampm}`
   }
   
+}
+
+function resetInput() {
+  input.value = ''
 }
