@@ -12,13 +12,11 @@
 <body>
   <div class="container">
     <div class="info-left">
-      <h2 id="weather">
-        Sunny
-        <span class="material-symbols-outlined">sunny</span>
-      </h2>
-      <h3 id="place">Heaven</h3>
-      <p id="date">Monday, 16th Jan '23</p><h3 id="time">2:04 pm</h3>
-      <h2 id="temperature">38C</h2>
+      <h2 id="weather">Weather<span></span></h2>
+      <p id="description">description</p>
+      <h3 id="place">place</h3>
+      <p id="date">date</p><h3 id="time">time</h3>
+      <h2 id="temperature">temperature</h2>
       <div>
         <span class="material-symbols-outlined search-icon">search</span>
         <input type="text" id="search">
@@ -27,19 +25,22 @@
     <div class="info-right">
       <div>
         <span class="material-symbols-outlined">device_thermostat</span>
-        <span id="feels_like"><p>Feels like</p><h3>32</h3></span>
+        <span id="feels_like"><p>Feels like</p><h3>feels_like</h3></span>
       </div>
       <div>
         <span class="material-symbols-outlined">humidity_percentage</span>
-        <span id="humidity"><p>Humidity</p><h3>12</h3></span>
+        <span id="humidity"><p>Humidity</p><h3>humidity</h3></span>
       </div>
-      <div>
+      <!-- <div>
         <span class="material-symbols-outlined">umbrella</span>
-        <span id="rain"><p>Chance of Rain</p><h3>12</h3></span>
-      </div>
+        <span id="rain"><p>Chance of Rain</p><h3>rain</h3></span>
+      </div> -->
       <div>
         <span class="material-symbols-outlined">air</span>
-        <span id="wind"><p>Wind Speed</p><h3>12</h3></span>
+        <span id="wind"><p>Wind Speed</p><h3>wind</h3></span>
+      </div>
+      <div>
+        <div id="wind_direction"></div>
       </div>
     </div>
   </div>
