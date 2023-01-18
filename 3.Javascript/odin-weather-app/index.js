@@ -1,6 +1,6 @@
 const key = '855ca86de94d46e59cd4dd9314b422d1'
 const input = document.querySelector('input')
-let timezone = 0
+let timezone = 32400
 
 window.addEventListener('load', console.log('loading'))
 input.addEventListener('keydown', keyHandler)
@@ -9,17 +9,15 @@ setTime()
 setInterval(setTime, 1000)
 
 getWeather('Seoul')
+input.focus()
 
 function keyHandler(e) {
   if (e.keyCode != '13') { return }
   if (!input.value) { return }
   getWeather()
   resetInput()
+  setTime()
 }
-
-// todo
-// 
-// 
 
 function getWeather(place) {
   // async function fetchGeocoding() {
@@ -80,7 +78,6 @@ function showData(promise) {
     setHTML(res)
     setBackground(res)
   })
-  // sunny, cloudy, rainy, weather_snowy
 
   function setHTML(data) {
     const iconUrl = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`
@@ -138,16 +135,17 @@ function showData(promise) {
     } else {
       document.documentElement.style.setProperty('--font', '#ffffffe0')
     }
-    
+
+    timezone = data.timezone
   }
 }
 
 function setTime() {
-  // 시차 적용
   const date = document.querySelector('#date')
   const time = document.querySelector('#time')
 
   const now = new Date()
+  now.setTime(now.getTime() - 32400000 + timezone*1000)
   let year = now.getFullYear()
   let month = now.getMonth()
   let today = now.getDate()

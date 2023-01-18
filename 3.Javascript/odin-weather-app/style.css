@@ -43,9 +43,9 @@ input {
     margin: 10px 0;
 }
 
-input::after:invalid {
-    content: '';
-    color: red;
+input::placeholder {
+    color: var(--font);
+    opacity: 0.9;
 }
 
 h2 {
