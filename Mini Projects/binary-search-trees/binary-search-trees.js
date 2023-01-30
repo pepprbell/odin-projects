@@ -10,10 +10,8 @@ const tree = (array) => {
 
   prettyPrint(root)
 
-  console.log(root)
-
   function buildTree(array) {
-    console.log(array)
+    // console.log(array)
     if (array.length == 0) {
       return null
     }
@@ -25,16 +23,40 @@ const tree = (array) => {
     const data = array[middle]
     // Recursively do the same for the left half and right half.
     // Get the middle of the left half and make it the left child of the root created in step 1.
-    console.log(`root = ${data}, left, ${array.slice(0,middle)}`)
+    // console.log(`root = ${data}, left, ${array.slice(0,middle)}`)
     const left = buildTree(array.slice(0,middle))
-    console.log(`root = ${data}, right, ${array.slice(middle+1)}`)
     // Get the middle of the right half and make it the right child of the root created in step 1.
+    // console.log(`root = ${data}, right, ${array.slice(middle+1)}`)
     const right = buildTree(array.slice(middle+1))
     return node(data, left, right)
   }
 
   function insert(value) {
-    // value to insert
+    if (!root) {
+      root = node(value)
+      return
+    }
+
+    if (find(value)) {
+      return
+    }
+
+    let here = root
+    while (true) {
+      if (here.data > value) {
+        if (here.left == null) {
+          here.left = node(value)
+          break
+        }
+        here = here.left
+      } else {
+        if (here.right == null) {
+          here.right = node(value)
+          break
+        }
+        here = here.right
+      }
+    }
   }
 
   function remove(value) {
@@ -93,7 +115,7 @@ const tree = (array) => {
     // use traversal method to provide a new array to buildTree function
   }
 
-  return { insert, remove, find, levelOrder, inorder, preorder,
+  return { root, insert, remove, find, levelOrder, inorder, preorder,
            postorder, height, depth, isBalanced, rebalance }
 }
 
