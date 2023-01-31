@@ -28,8 +28,11 @@ const tree = (array) => {
     const left = buildTree(array.slice(0,middle))
     // Get the middle of the right half and make it the right child of the root created in step 1.
     const right = buildTree(array.slice(middle+1))
+    root = node(data, left, right)
     return node(data, left, right)
   }
+
+  function getRoot() { return root }
 
   function insert(value) {
     if (!root) {
@@ -197,15 +200,20 @@ const tree = (array) => {
   function isBalanced() {
     // check if the tree is balanced
     // balanced tree -> diff btwn heights of left & right nodes is not more than 1
+    let left = root.left !== null ? height(root.left) : -1
+    let right = root.right !== null ? height(root.right) : -1
+    return Math.abs(left - right) <= 1
   }
 
   function rebalance() {
     // rebalances an unbalanced tree
     // use traversal method to provide a new array to buildTree function
+    let array = inorder()
+    buildTree(array)
   }
 
-  return { root, insert, remove, find, levelOrder, inorder, preorder,
-           postorder, height, depth, isBalanced, rebalance }
+  return { getRoot, insert, remove, find, levelOrder, inorder, 
+           preorder, postorder, height, depth, isBalanced, rebalance }
 }
 
 
