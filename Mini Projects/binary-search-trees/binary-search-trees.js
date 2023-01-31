@@ -11,7 +11,6 @@ const tree = (array) => {
   prettyPrint(root)
 
   function buildTree(array) {
-    // console.log(array)
     if (array.length == 0) {
       return null
     }
@@ -23,10 +22,8 @@ const tree = (array) => {
     const data = array[middle]
     // Recursively do the same for the left half and right half.
     // Get the middle of the left half and make it the left child of the root created in step 1.
-    // console.log(`root = ${data}, left, ${array.slice(0,middle)}`)
     const left = buildTree(array.slice(0,middle))
     // Get the middle of the right half and make it the right child of the root created in step 1.
-    // console.log(`root = ${data}, right, ${array.slice(middle+1)}`)
     const right = buildTree(array.slice(middle+1))
     return node(data, left, right)
   }
@@ -125,14 +122,14 @@ const tree = (array) => {
         continue
       } else if (newRight) {
         // pop if right exists, and push right into stack
-        res.push(thisNode.data)
+        res.push(func(thisNode.data))
         pool.add(thisNode.data)
         stack.pop()
         stack.push(thisNode.right)
         continue
       } else {
         // pop if there's no left or right
-        res.push(thisNode.data)
+        res.push(func(thisNode.data))
         pool.add(thisNode.data)
         stack.pop()
       }
@@ -153,8 +150,18 @@ const tree = (array) => {
     return res
   }
 
-  function postorder(func = (value) => {return value}) {
+  function postorder(func = (value) => {return value}, node = root) {
     let res = []
+    
+    if (node.left !== null) {
+      res = res.concat(postorder(func, node.left))
+    }
+    if (node.right !== null) {
+      res = res.concat(postorder(func, node.right))
+    }
+    res.push(func(node.data))
+
+    return res
   }
 
   function height(node) {
