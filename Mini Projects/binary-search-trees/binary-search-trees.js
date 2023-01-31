@@ -85,15 +85,33 @@ const tree = (array) => {
   function levelOrder(func) {
     // func(node) results in bfs order
     // iteration / recursion available
+    let res = []
+    if (func === undefined) {
+      func = (value) => {return value}
+    }
 
-    return // array of values if no function is given
+    let nodes = [root]
+    while (nodes.length > 0) {
+      let thisNode = nodes.shift()
+      res.push(func(thisNode.data))
+      
+      if (thisNode.left !== null) {
+        nodes.push(thisNode.left)
+      }
+      if (thisNode.right !== null) {
+        nodes.push(thisNode.right)
+      }
+    }
+
+    return res // array of values if no function is given
   }
 
   function inorder(func) {
     // same as levelOrder, but in dfs and inorder
   }
 
-  function preorder(func) {}
+  function preorder(func) {
+  }
 
   function postorder(func) {}
 
