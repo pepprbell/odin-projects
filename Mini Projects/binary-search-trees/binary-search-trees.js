@@ -108,6 +108,36 @@ const tree = (array) => {
 
   function inorder(func = (value) => {return value}) {
     // same as levelOrder, but in dfs and inorder
+    let res = []
+    let stack = [root]
+    let pool = new Set()
+    let count = 1
+
+    while (stack.length > 0 && count < 100) {
+      count ++
+      let thisNode = stack[stack.length-1]
+      let newLeft = thisNode.left !== null && !(pool.has(thisNode.left.data))
+      let newRight = thisNode.right !== null && !(thisNode.right.data in pool)
+
+      if (newLeft) {
+        // push into stack if left exists - no use for now
+        stack.push(thisNode.left)
+        continue
+      } else if (newRight) {
+        // pop if right exists, and push right into stack
+        res.push(thisNode.data)
+        pool.add(thisNode.data)
+        stack.pop()
+        stack.push(thisNode.right)
+        continue
+      } else {
+        // pop if there's no left or right
+        res.push(thisNode.data)
+        pool.add(thisNode.data)
+        stack.pop()
+      }
+    }
+    return res
   }
 
   function preorder(func = (value) => {return value}, node = root) {
