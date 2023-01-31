@@ -1,3 +1,6 @@
+// todo:
+// remove, isbalanced, rebalance, height, depth
+
 
 const node = (data=null, left=null, right=null) => {
   return {data, left, right}
@@ -108,10 +111,8 @@ const tree = (array) => {
     let res = []
     let stack = [root]
     let pool = new Set()
-    let count = 1
 
-    while (stack.length > 0 && count < 100) {
-      count ++
+    while (stack.length > 0) {
       let thisNode = stack[stack.length-1]
       let newLeft = thisNode.left !== null && !(pool.has(thisNode.left.data))
       let newRight = thisNode.right !== null && !(thisNode.right.data in pool)
@@ -165,11 +166,32 @@ const tree = (array) => {
   }
 
   function height(node) {
-    return // node's height
+    let heightLeft = 0
+    let heightRight = 0
+
+    if (node.left !== null) {
+      heightLeft = height(node.left) + 1
+    }
+    if (node.right !== null) {
+      heightRight = height(node.right) + 1
+    }
+
+    return Math.max(heightLeft, heightRight) // node's height
   }
 
   function depth(node) {
-    return // node's depth
+    let thisNode = root
+    let count = 0
+
+    while (thisNode != node) {
+      if (thisNode.data > node.data) {
+        thisNode = thisNode.left
+      } else {
+        thisNode = thisNode.right
+      }
+      count ++
+    }
+    return count // node's depth
   }
 
   function isBalanced() {
