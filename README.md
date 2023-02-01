@@ -22,3 +22,4 @@ I've done:
 
 ### +. Mini Projects
 - Form Validation
+- Binary Search Trees
