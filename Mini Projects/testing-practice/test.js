@@ -43,7 +43,7 @@ describe('calculator', () => {
   })
 
   test('case 5 - multiply', () => {
-    expect(calculator.divide(-3,1)).toBe(-3);
+    expect(calculator.multiply(-3,1)).toBe(-3);
   })
 });
 
@@ -63,16 +63,16 @@ describe('caesar cipher', () => {
 const analyzeArray = require('./analyzeArray')
 describe('analyze array', () => {
   test('case 1', () => {
-    expect(analyzeArray([1,2,3,4,5,6,7])).toBe({
-      average: 7,
+    expect(analyzeArray([1,2,3,4,5,6,7])).toMatchObject({
+      average: 4,
       min: 1,
       max: 7,
-      length: 6
+      length: 7
     });
   })
 
   test('case 2', () => {
-    expect(analyzeArray([-1,0,1])).toBe({
+    expect(analyzeArray([-1,0,1])).toMatchObject({
       average: 0,
       min: -1,
       max: 1,
