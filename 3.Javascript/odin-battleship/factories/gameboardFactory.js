@@ -3,6 +3,7 @@ import Ship from './shipFactory'
 function Gameboard() {
   const gameboard = []
   const visited = []
+  const shipList = []
   for (let i = 0; i < 10; i++) {
     gameboard.push([0,0,0,0,0,0,0,0,0,0])
     visited.push([0,0,0,0,0,0,0,0,0,0])
@@ -37,6 +38,7 @@ function Gameboard() {
 
       // 게임보드에 배 배치
       let ship = Ship(length)
+      shipList.push(ship)
       if (garo) {
         for (let i = 0; i < length; i++) {
           gameboard[coord[0]][coord[1]+i] = ship
@@ -49,12 +51,20 @@ function Gameboard() {
       return true
     },
     receiveAttack: function(coord) {
-      // 좌표를 받아 배가 맞았는지 아닌지 판별
-      // 맞았으면 배한테 맞았다 표시
+      if (visited[coord[0]][coord[1]] != 0) {
+        return false
+      }
       // 쏜 자리 표시
+      visited[coord[0]][coord[1]] = 1
+      // 좌표를 받아 배가 맞았는지 아닌지 판별 -> 타격
+      if (this.hasShip(coord)) {
+        gameboard[coord[0]][coord[1]].hit()
+        return true
+      }
     },
     isAllSunk: function() {
       // 모든 배가 침몰했는지 아닌지 return
+      return shipList.every(ship => ship.isSunk())
     },
     showGameboard: function() { return gameboard },
     hasShip: function(coord) {
@@ -63,7 +73,7 @@ function Gameboard() {
           gameboard[coord[0]][coord[1]] == 1) {
         return false
       } else {
-        return gameboard[c[0]][c[1]]
+        return gameboard[coord[0]][coord[1]]
       }
     }
   }
