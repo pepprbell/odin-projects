@@ -60,15 +60,17 @@ describe('Gameboard factory function', () => {
     expect(gameboard.placeShip([0,0],3)).toBe(false)
   })
 
-  it('should record attack and return if ship has sunk when the ship is attacked', () => {
+  it('should record attack and return true if ship is attacked', () => {
     const gameboard = Gameboard()
     gameboard.placeShip([0,0], 3)
-    expect(gameboard.receiveAttack([0,0])).toBe(false)
+    expect(gameboard.receiveAttack([0,0])).toBe(true)
   })
   
-  it('should record shot when a ship is not attacked', () => {})
-  
-  it('should return false when the spot has already shot', () => {})
+  it('should return false when the spot has already shot', () => {
+    const gameboard = Gameboard()
+    gameboard.receiveAttack([0,0])
+    expect(gameboard.receiveAttack([0,0])).toBe(false)
+  })
   
   it('should when', () => {})
   
