@@ -1,4 +1,4 @@
-import Ship from './shipFactory'
+// import Ship from './shipFactory'
 
 function Gameboard() {
   const gameboard = []
@@ -92,4 +92,4 @@ function Gameboard() {
   }
 }
 
-export default Gameboard
+// export default Gameboard

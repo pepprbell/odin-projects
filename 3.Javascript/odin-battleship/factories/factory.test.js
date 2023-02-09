@@ -54,10 +54,10 @@ describe('Gameboard factory function', () => {
     expect(gameboard.placeShip(coord, length, garo)).toBe(false)
   })
 
-  it('should not place ship when there is another ship in the coordinates', () => {
+  it('should not place ship when there is another ship at/near the coordinates', () => {
     const gameboard = Gameboard()
     gameboard.placeShip([0,0],3,false)
-    expect(gameboard.placeShip([0,0],3)).toBe(false)
+    expect(gameboard.placeShip([2,0],3)).toBe(false)
   })
 
   it('should record attack and return true if ship is attacked', () => {
@@ -65,7 +65,7 @@ describe('Gameboard factory function', () => {
     gameboard.placeShip([0,0], 3)
     expect(gameboard.receiveAttack([0,0])).toBe(true)
   })
-  
+
   it('should return false when the spot has already shot', () => {
     const gameboard = Gameboard()
     gameboard.receiveAttack([0,0])

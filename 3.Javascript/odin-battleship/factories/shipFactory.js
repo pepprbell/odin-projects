@@ -14,4 +14,4 @@ function Ship(length) {
   }
 }
 
-export default Ship
+// export default Ship
