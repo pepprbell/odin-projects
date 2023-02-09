@@ -8,6 +8,27 @@ function Gameboard() {
     gameboard.push([0,0,0,0,0,0,0,0,0,0])
     visited.push([0,0,0,0,0,0,0,0,0,0])
   }
+
+  function getShipArea(coord, length, garo) {
+    const [x,y] = coord
+    const res = []
+    let xlim; let ylim
+    if (!garo) {
+      xlim = [Math.max(0,x-1), Math.min(x+length+1,10)]
+      ylim = [Math.max(0,y-1), Math.min(y+2,10)]
+    } else {
+      xlim = [Math.max(0,x-1), Math.min(x+2,10)]
+      ylim = [Math.max(0,y-1), Math.min(y+length+1,10)]
+    }
+
+    for (let i = xlim[0]; i < xlim[1]; i++) {
+      for (let j = ylim[0]; j < ylim[1]; j++) {
+        res.push([i,j])
+      }
+    }
+    return res
+  }
+
   return {
     placeShip: function(coord, length, garo = true) {
       const dy = garo ? coord[0] : coord[0]+length
@@ -21,19 +42,11 @@ function Gameboard() {
           return false
       }
 
-      // 배가 이미 있어도 에러처리
-      if (garo) {
-        for (let i = 0; i < length; i++) {
-          if (gameboard[coord[0]][coord[1]+i] != 0) {
-            return false
-          }
-        }
-      } else {
-        for (let i = 0; i < length; i++) {
-          if (gameboard[coord[0]+i][coord[1]] != 0) {
-            return false
-          }
-        }
+      // 배가 이미 있어도 에러처리, 주변 1칸씩도 비어있는지 확인
+      const shipArea = getShipArea(coord, length, garo)
+      for (let i = 0; i < shipArea.length; i++) {
+        let [x,y] = shipArea[i]
+        if (gameboard[x][y] != 0) { return false }
       }
 
       // 게임보드에 배 배치
