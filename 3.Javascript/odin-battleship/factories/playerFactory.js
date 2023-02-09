@@ -7,8 +7,8 @@ function Player(ai = false) {
   }
   return {
     pick: function() {
-      const nextCoord = visited.splice(Math.floor(Math.random()*visited.length), 1) 
-      return nextCoord
+      const nextCoord = visited.splice(Math.floor(Math.random()*visited.length),1)[0]
+      return nextCoord[0]*10 + nextCoord[1]
     }
   }
 }
