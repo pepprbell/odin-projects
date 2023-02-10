@@ -19,6 +19,7 @@ I've done:
 - Tic Tac Toe
 - Restaurant Page
 - Weather App
+- Battleship
 
 ### +. Mini Projects
 - Form Validation
