@@ -12,13 +12,17 @@
 <body>
   <div class="container">
     <div class="left">
-      <h3>YOU <button><span>↺</span> Regenerate map</button></h3>
+      <h3>YOU <button id="regenerate"><span>↺</span> Regenerate map</button></h3>
       <div id="your_board" class="board"></div>
     </div>
     <div class="right">
       <h3>ENEMY</h3>
       <div id="enemy_board" class="board"></div>
     </div>
+  </div>
+  <div id="win" class="hide">
+    <h1>🎉Player WIN🎉</h1>
+    <button id="restart">↺ RESTART ?</button>
   </div>
   <script src="factories/shipFactory.js"></script>
   <script src="factories/gameboardFactory.js"></script>
