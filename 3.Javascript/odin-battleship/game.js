@@ -3,15 +3,10 @@ let display = Display()
 let input = Input()
 game.isOn()
 
-// todo
-// shot 아직 동작 안함
-// 
-
 function Game() {
   let playerBoard = Gameboard()
   let aiBoard = Gameboard()
-  const player = Player()
-  const ai = Player(true)
+  let ai = Player(true)
   let on = false
 
   function isOn() {
@@ -75,7 +70,6 @@ function Game() {
     if (playerBoard.isAllSunk()) {
       win(2)
     }
-    
   }
 
   function shot(id, player) {
@@ -91,11 +85,29 @@ function Game() {
     return false
   }
 
-  function win(player) {}
+  function win(player) {
+    const h1 = document.querySelector('h1')
+    if (player == 1) {
+      h1.innerHTML = '🎉Player WIN🎉'
+    } else {
+      h1.innerHTML = '😥Player lose😥'
+    }
+
+    display.result()
+  }
+
+  function reset() {
+    playerBoard = Gameboard()
+    aiBoard = Gameboard()
+    ai = Player()
+    isOn()
+
+    display.result()
+  }
 
   function getAi() { return ai }
 
-  return { isOn, resetBoard, placeShip, shot, getAi, handleShot }
+  return { isOn, resetBoard, placeShip, shot, getAi, handleShot, reset }
 }
 
 function Display() {
@@ -133,14 +145,25 @@ function Display() {
     }
   }
 
-  return { fillGrid, shot }
+  function result() {
+    const win = document.querySelector('#win')
+    win.classList.toggle('hide')
+    
+    const regenerate = document.querySelector('#regenerate')
+    regenerate.classList.remove('hide')
+  }
+
+  return { fillGrid, shot, result }
 }
 
 function Input() {
 
   function isOn() {
-    const button = document.querySelector('button')
-    button.addEventListener('click', () => game.resetBoard(1))
+    const regenerate = document.querySelector('#regenerate')
+    regenerate.addEventListener('click', () => game.resetBoard(1))
+
+    const restart = document.querySelector('#restart')
+    restart.addEventListener('click', game.reset)
   }
 
   function shot(e) {
