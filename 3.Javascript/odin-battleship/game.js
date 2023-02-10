@@ -3,11 +3,16 @@ let display = Display()
 let input = Input()
 game.isOn()
 
+// todo
+// shot 아직 동작 안함
+// 
+
 function Game() {
   let playerBoard = Gameboard()
   let aiBoard = Gameboard()
   const player = Player()
   const ai = Player(true)
+  let on = false
 
   function isOn() {
     placeShip(playerBoard, 1)
@@ -44,17 +49,53 @@ function Game() {
     display.fillGrid(board.showGameboard(), player)
   }
 
-  function shot(num, player) {
-    if (player == 1) {
-      aiBoard.receiveAttack([Math.floor(num/10),num%10])
-    } else {
-      playerBoard.receiveAttack([Math.floor(num/10),num%10])
+  function handleShot(num) {
+    // first shot이면 regenerate 버튼 없애기
+    if (!on) {
+      const button = document.querySelector('button')
+      button.classList.add('hide')
+      on = true
     }
+
+    // ai board 타격체크
+    let hasShip = shot(num, 1)
+    display.shot(num, 1, hasShip)
+
+    // 게임 끝났는지?
+    if (aiBoard.isAllSunk()) {
+      win(1)
+    }
+
+    // ai가 플레이어 타격
+    let newShot = 'you'+ai.pick()
+    shot(newShot, 2)
+    display.shot(newShot, 2)
+
+    // 게임 끝났는지?
+    if (playerBoard.isAllSunk()) {
+      win(2)
+    }
+    
   }
+
+  function shot(id, player) {
+    let n = id.substring(3)
+    if (player == 1) {
+      const hasShip = aiBoard.receiveAttack([Math.floor(n/10),n%10])
+      if (hasShip) {
+        return true
+      }
+    } else {
+      playerBoard.receiveAttack([Math.floor(n/10),n%10])
+    }
+    return false
+  }
+
+  function win(player) {}
 
   function getAi() { return ai }
 
-  return { isOn, resetBoard, placeShip, shot, getAi }
+  return { isOn, resetBoard, placeShip, shot, getAi, handleShot }
 }
 
 function Display() {
@@ -68,25 +109,28 @@ function Display() {
     for (let i = 0; i < 10; i++) {
       for (let j = 0; j < 10; j++) {
         let div = document.createElement('div')
-        div.name = i*10+j
-        if (data[i][j] != 0) {
-          div.classList.add('ship')
-        }
+
         if (player == 2) {
           div.addEventListener('click', input.shot)
+          div.id = 'ene'+(i*10+j)
+        } else {
+          div.id = 'you'+(i*10+j)
+          if (data[i][j] != 0) {
+            div.classList.add('ship')
+          }
         }
         board.appendChild(div)
       }
     }
   }
 
-  function shot(num, player) {
-    const gotShot = player == 1 ?
-      document.querySelector(`div#enemy_board div[name='${num}']`) :
-      document.querySelector(`div#your_board div[name='${num}']`)
-    console.log(num, player, gotShot)
-    console.log(document.querySelector("div[name='1']"))
-    
+  function shot(id, player, hasShip = false) {
+    const gotShot = document.querySelector(`#${id}`)
+    console.log(id, player, gotShot)
+    gotShot.classList.add('shot')
+    if (hasShip) {
+      gotShot.classList.add('ship')
+    }
   }
 
   return { fillGrid, shot }
@@ -100,14 +144,8 @@ function Input() {
   }
 
   function shot(e) {
-    console.log(e.target.name)
-    // ai board 타격체크
-    game.shot(e.target.name, 1)
-    display.shot(e.target.name, 1)
-    // ai가 플레이어 타격
-    let newShot = game.getAi().pick()
-    game.shot(newShot, 2)
-    display.shot(newShot, 2)
+    if ([...e.target.classList].includes('shot')) { return }
+    game.handleShot(e.target.id)
   }
 
   return { isOn, shot }
