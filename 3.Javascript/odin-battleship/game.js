@@ -136,9 +136,8 @@ function Display() {
     }
   }
 
-  function shot(id, player, hasShip = false) {
+  function shot(id, hasShip = false) {
     const gotShot = document.querySelector(`#${id}`)
-    console.log(id, player, gotShot)
     gotShot.classList.add('shot')
     if (hasShip) {
       gotShot.classList.add('ship')
