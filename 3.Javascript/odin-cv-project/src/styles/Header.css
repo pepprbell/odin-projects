@@ -1,0 +1,16 @@
+.header {
+    width: 100%;
+}
+
+.header > p {
+    display: inline-block;
+    width: fit-content;
+    margin-right: 20px;
+}
+
+.line {
+    width: 100%;
+    height: 1px;
+    background-color: #00000030;
+    margin: 10px 0 40px;
+}

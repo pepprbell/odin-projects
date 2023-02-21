@@ -1,0 +1,9 @@
+.App {
+    background-color: #fff;
+    width: 800px;
+    margin: 0 auto;
+    padding: 20px 40px 40px;
+    box-sizing: border-box;
+    border-radius: 4px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
