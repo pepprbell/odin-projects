@@ -26,3 +26,7 @@ h4 {
 p, a {
     font-size: 14px;
 }
+
+input, textarea {
+    font-family: 'Noto Sans KR', sans-serif;
+}

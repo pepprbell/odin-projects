@@ -1,11 +1,7 @@
 import React, { Component } from 'react'
-import './Header.css'
+import '../styles/Header.css'
 
 class Header extends Component {
-  constructor(props) {
-    super(props)
-  }
-
   link = 'https://www.' + this.props.data.github
 
   render() {
