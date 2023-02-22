@@ -1,20 +1,16 @@
-import { Component } from 'react';
 import './styles/App.css';
 import Header from './components/Header';
 import Section from './components/Section';
 
-class App extends Component {
-  constructor() {
-    super()
-  }
+function App() {
 
-  header = {
+  const header = {
     name: '차수연',
     email: 'pepprbell@gmail.com',
     github: 'github.com/pepprbell'
   }
 
-  education = {
+  const education = {
     sectionName: 'Education',
     data: [
     {date: '2016. 02 - 2020. 08',
@@ -26,7 +22,7 @@ class App extends Component {
     ]
   }
 
-  projects = {
+  const projects = {
     sectionName: 'Projects',
     data:[
     {date: '2021. 01 - 2021. 02',
@@ -41,15 +37,13 @@ class App extends Component {
     ]
   }
 
-  render() {
-    return (
-      <div className="App">
-        <Header data={this.header}></Header>
-        <Section data={this.education}></Section>
-        <Section data={this.projects}></Section>
-      </div>
-    );
-  }
+  return (
+    <div className="App">
+      <Header data={header}></Header>
+      <Section data={education}></Section>
+      <Section data={projects}></Section>
+    </div>
+  );
 }
 
 export default App;
