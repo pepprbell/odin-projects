@@ -1,64 +1,51 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import '../styles/Input.css'
 
-class Input extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      value: this.props.children,
-      areaHeight: '45px'
+function Input(props) {
+
+  const [value, setValue] = useState(props.children)
+  const [areaHeight, setAreaHeight] = useState('45px')
+
+  function handleChange(e) {
+    setValue(e.target.value)
+  }
+
+  function handleMultiLine(e) {
+    setValue(e.target.value)
+    setAreaHeight(e.target.scrollHeight)
+  }
+
+  const type = props.type
+  let input;
+  if (props.isEditing) {
+    if (type === 'section') {
+      input = <input className='input-h3' onChange={handleChange} value={value}></input>
+    } else if (type === 'date') {
+      input = <input className='input-p' onChange={handleChange} value={value}></input>
+    } else if (type === 'title') {
+      input = <input className='input-h4' onChange={handleChange} value={value}></input>
+    } else if (type === 'desc') {
+      input = <textarea className='input-area' onChange={handleMultiLine} value={value} style={{ height: this.state.areaHeight }}></textarea>
     }
-
-    this.handleChange = this.handleChange.bind(this)
-    this.handleMultiLine = this.handleMultiLine.bind(this)
-  }
-
-  handleChange(e) {
-    this.setState(prev => ({
-      value: e.target.value
-    }))
-  }
-
-  handleMultiLine(e) {
-    this.setState(prev => ({
-      value: e.target.value,
-      areaHeight: e.target.scrollHeight
-    }))
-  }
-
-  render() {
-    const type = this.props.type
-    let input;
-    if (this.props.isEditing) {
-      if (type === 'section') {
-        input = <input className='input-h3' onChange={this.handleChange} value={this.state.value}></input>
-      } else if (type === 'date') {
-        input = <input className='input-p' onChange={this.handleChange} value={this.state.value}></input>
-      } else if (type === 'title') {
-        input = <input className='input-h4' onChange={this.handleChange} value={this.state.value}></input>
-      } else if (type === 'desc') {
-        input = <textarea className='input-area' onChange={this.handleMultiLine} value={this.state.value} style={{ height: this.state.areaHeight }}></textarea>
-      }
-    } else {
-      if (type === 'section') {
-        input = <h3>{this.state.value}</h3>
-      } else if (type === 'date') {
-        input = <p>{this.state.value}</p>
-      } else if (type === 'title') {
-        input = <h4>{this.state.value}</h4>
-      } else if (type === 'desc') {
-        input = <p>{this.state.value}</p>
-      }
+  } else {
+    if (type === 'section') {
+      input = <h3>{value}</h3>
+    } else if (type === 'date') {
+      input = <p>{value}</p>
+    } else if (type === 'title') {
+      input = <h4>{value}</h4>
+    } else if (type === 'desc') {
+      input = <p>{value}</p>
     }
-
-    const classname = `input ` + type
-
-    return (
-      <div className={classname}>
-        {input}
-      </div>
-    )
   }
+
+  const classname = `input ` + type
+
+  return (
+    <div className={classname}>
+      {input}
+    </div>
+  )
 }
 
 export default Input
