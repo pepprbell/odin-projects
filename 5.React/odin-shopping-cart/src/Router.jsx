@@ -8,16 +8,14 @@ import App from "./App";
 const Router = () => {
   const router = createBrowserRouter([
     {
-      path: "/",
+      path: '/',
+      // path: ":page",
       element: <App />,
       errorElement: <ErrorPage />,
-      children: [
-        { index: true, element: <Home /> },
-        { path: 'category/:categoryName', element: <Category /> },
-        { path: 'cart', element: <Cart /> }
-      ]
     },
   ])
+  
+  return <RouterProvider router={router} />;
 }
 
 export default Router;
