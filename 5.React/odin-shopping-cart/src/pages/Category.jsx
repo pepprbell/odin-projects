@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom'
+import { useOutletContext, useParams } from 'react-router-dom'
 import fetchData from '../hooks/fetchData';
 import Card from '../components/Card'
 import { useEffect, useState } from 'react';
@@ -6,6 +6,8 @@ import './Category.css'
 
 const Category = () => {
   let { type } = useParams()
+  const updateCart = useOutletContext()
+
   const { data, error, loading } = fetchData(type)
 
   const [typeKR, setTypeKR] = useState('')
@@ -42,7 +44,10 @@ const Category = () => {
       <article>
         <menu>
           {data.map((each, idx) => {
-            return <li key={idx}><Card data={each}/></li>
+            if (idx >= 1) {
+              console.log()
+            }
+            return <li key={idx}><Card res={each} onclick={updateCart}/></li>
           })}
         </menu>
       </article>

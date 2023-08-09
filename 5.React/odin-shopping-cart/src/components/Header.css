@@ -4,20 +4,20 @@ header {
     border-bottom: 2px solid var(--accent);
 }
 
-header > section {
+header > section, header > nav {
     min-width: 100%;
     padding: 0 calc(50vw - 500px);
     box-sizing: border-box;
 }
 
-.upperSection {
+header > section {
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 96px;
 }
 
-.lowerSection {
+header > nav {
     height: 52px;
     border-top: 1px solid #eeeeee;
     text-align: left;
@@ -36,8 +36,29 @@ header > section {
     height: fit-content;
 }
 
-.upperSection .material-symbols-outlined {
-    color: var(--accent);
+.shop {
+    font-size: 0;
+    position: relative;
+}
+
+.shop .circle {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    background-color: #ff3e3e;
+    border-radius: 50%;
+    top: -5px;
+    right: -3px;
+    margin: 0;
+    color: #fff;
+    padding: 0;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 24px;
+}
+
+header > section .material-symbols-outlined {
+    color: var(--color);
     font-size: 40px;
 }
 
@@ -54,12 +75,12 @@ header > section {
         height: 120px;
     }
 
-    header > section {
+    header > section, header > nav {
         width: 100vw;
         padding: 0 16px;
     }
 
-    .upperSection {
+    header > section {
         height: 68px;
     }
 
@@ -67,5 +88,16 @@ header > section {
         height: 37px;
     }
 
+    .shop .circle {
+        width: 20px;
+        height: 20px;
+        font-size: 12px;
+        line-height: 20px;
+    }
+    
+    header > section .material-symbols-outlined {
+        color: var(--color);
+        font-size: 30px;
+    }
 
 }

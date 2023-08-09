@@ -1,9 +1,8 @@
 import { useEffect, useRef } from 'react';
 import './Card.css'
 
-const Card = (res) => {
-  const data = res.data
-
+const Card = ({ res, onclick }) => {
+  const data = res
   const ref = useRef(0)
 
   useEffect(() => {
@@ -20,6 +19,8 @@ const Card = (res) => {
       localStorage.setItem(id, parseInt(localStorage.getItem(id)) + 1)
       alert(`한 번 더 담으셨네요!\n장바구니 수량이 ${localStorage.getItem(id)}개가 되었습니다.`)
     }
+
+    onclick()
   }
 
   return (
