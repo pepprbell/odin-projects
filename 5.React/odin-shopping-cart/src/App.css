@@ -5,3 +5,18 @@
   text-align: center;
   box-sizing: border-box;
 }
+
+.container {
+  width: 1000px;
+  height: 100%;
+  margin: 0 auto;
+}
+
+
+@media (max-width: 1000px) {
+  .container {
+    width: 100vw;
+    padding: 0 16px;
+    box-sizing: border-box;
+  }
+}
