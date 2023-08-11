@@ -36,7 +36,7 @@ const CartObject = ({ data, oncheck, onchange }) => {
     <menu className="cartObject">
       <li className="cartDesc">
         <label className='checkbox'>
-          <input type="checkbox" name="" id="" onChange={oncheck} checked />
+          <input type="checkbox" name="" id="" onChange={oncheck} />
           <span><span className="material-symbols-outlined">done</span></span>
         </label>
         <img src="" alt="" />

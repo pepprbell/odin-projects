@@ -52,7 +52,7 @@
     display: flex;
     width: 100px;
     height: 30px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--bolder);
     border-radius: 5px;
 }
 
@@ -73,8 +73,8 @@
     border: none;
     box-sizing: border-box;
     outline: none;
-    border-right: 1px solid #ccc;
-    border-left: 1px solid #ccc;
+    border-right: 1px solid var(--bolder);
+    border-left: 1px solid var(--bolder);
     font-size: 16px;
     background-color: transparent;
     text-align: center;
