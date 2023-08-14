@@ -10,9 +10,9 @@ const Header = ({ cartLength }) => {
 
   useEffect(() => {
     if (cartLength === 0) {
-      cartRef.current.style.appearance = 'none'
+      cartRef.current.style.display = 'none'
     } else {
-      cartRef.current.style.appearance = 'auto'
+      cartRef.current.style.display = 'block'
     }
   }, [cartLength])
 
