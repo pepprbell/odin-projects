@@ -1,15 +1,29 @@
 import { useState, useEffect } from "react";
 
-const fetchData = (category) => {
+const FetchData = (category, dataHandler) => {
   const [data, setData] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+  
+  const [storage, setStorage] = dataHandler
+  const prev = storage.get(category)
 
   useEffect(() => {
+    setLoading(true)
+
+    if (prev !== undefined) {
+      setData(prev)
+      setError(null)
+      setLoading(false)
+      return
+    }
+    
+    console.log('fetching...')
     fetch("https://api.nookipedia.com/nh/" + category, {
+      mode: 'cors',
       method: 'GET',
-      headers: {
-        'X-API-KEY': null,
+      headers: { 
+        'X-API-KEY': '',
       }
     })
       .then((response) => {
@@ -18,12 +32,15 @@ const fetchData = (category) => {
         }
         return response.json();
       })
-      .then((response) => setData(response))
+      .then((response) => {
+        setStorage(prev => new Map([...prev, [category, response]]))
+        setData(response)
+      })
       .catch((error) => setError(error))
       .finally(() => setLoading(false));
-  }, []);
-
-  return { data, error, loading };
+    }, [category]);
+    
+    return { data, error, loading };
 };
 
-export default fetchData;
+export default FetchData;
