@@ -40,6 +40,9 @@
     width: 90px;
     height: 90px;
     margin-left: 13px;
+    background-color: var(--border);
+    padding: 5px;
+    border-radius: 3px;
 }
 
 .cartProduct {
