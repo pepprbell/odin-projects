@@ -66,7 +66,8 @@ header > section .material-symbols-outlined {
     font-size: 16px;
     text-decoration: none;
     line-height: 52px;
-    margin-right: 50px;
+    margin-right: 40px;
+    padding: 10px 10px 10px 0;
     color: #333;
 }
 
