@@ -1,54 +1,55 @@
-import { useOutletContext, useParams } from 'react-router-dom'
-import fetchData from '../hooks/fetchData';
+import { useParams } from 'react-router-dom'
+import useDataFetching from '../hooks/useDataFetching';
 import Card from '../components/Card'
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useContext, useState } from 'react';
 import './Category.css'
+import { DataContext } from '../context/DataContext';
 
 const Category = () => {
   let { type } = useParams()
-  const updateCart = useOutletContext()
-
-  const { data, error, loading } = fetchData(type)
-
-  const [typeKR, setTypeKR] = useState('')
+  const [dataHandler, cartHandler] = useContext(DataContext)
   
+  const { data, error, loading } = useDataFetching(type, dataHandler)
+
+  const [orderBy, setOrderBy] = useState('default')
+
+  const typeDict = {
+    'fish': '물고기',
+    'bugs': '곤충',
+  }
+    
   useEffect(() => {
-    switch (type) {
-      case 'fish':
-        setTypeKR('물고기')
-        break;
-    
-      case 'bugs':
-        setTypeKR('곤충')
-      break;
-    }
+    // 페이지 로딩 시 기본 정렬 자동 선택
+    inputRef.current.childNodes[0].checked = true
+  }, [])
 
-    
-  }, [type])
+  const inputRef = useRef(null)  
 
-  console.log(data)
 
   return (
     <section className='category'>
       <section className='cateTitle'>
-        <h1>{typeKR}</h1>
-        <div>
-          <input type="radio" id='default' name="order_by"/>
+        <h1>{typeDict[type]}</h1>
+        <div ref={inputRef}>
+          <input type="radio" id='default' name="order_by" onChange={() => setOrderBy('default')}/>
           <label htmlFor="default">기본 정렬</label>
-          <input type="radio" id='asc' name="order_by"/>
+          <input type="radio" id='asc' name="order_by" onChange={() => setOrderBy('asc')}/>
           <label htmlFor="asc">낮은 가격순</label>
-          <input type="radio" id='desc' name="order_by"/>
+          <input type="radio" id='desc' name="order_by" onChange={() => setOrderBy('desc')}/>
           <label htmlFor="desc">높은 가격순</label>
         </div>
       </section>
       <article>
         <menu>
-          {data.map((each, idx) => {
-            if (idx >= 1) {
-              console.log()
-            }
-            return <li key={idx}><Card res={each} onclick={updateCart}/></li>
-          })}
+          {loading ? (
+            <div><h1>loading...</h1></div>
+          ) : error ? (
+            <div><h1>error</h1></div>
+          ) : (
+            data.map((each) => {
+            return <li key={each.name}><Card res={each} cartHandler={cartHandler} /></li>
+            })
+          )}
         </menu>
       </article>
     </section>
