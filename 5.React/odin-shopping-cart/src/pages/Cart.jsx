@@ -1,50 +1,56 @@
-import { useState, useEffect } from "react";
+import { useEffect, useRef, useContext } from "react";
+import { DataContext } from '../context/DataContext';
 import CartObject from "../components/CartObject";
+import useCart from "../hooks/useCart";
 import './Cart.css'
 
 const Cart = () => {
-  const [cartList, setCartList] = useState([])
+  const [dataHandler, cartHandler] = useContext(DataContext)
+  const [cart, setCart] = cartHandler
+
+  const inputRefs = useRef([])
 
   useEffect(() => {
-    for (let i = 0; i < localStorage.length; i++) {
-      let key = localStorage.key(i)
-      let item = localStorage.getItem(key)
-      setCartList(prev => [...prev, [key, item]])
-    }
   }, [])
 
+  useEffect(() => {
+    console.log(cart)
+  }, [cart])
+
   const checkHandler = () => {}
-  const changeHandler = () => {}
 
   return (
     <section className="cart">
       <section className="cartTitle">
         <label className='checkbox'>
-          <input type="checkbox" name="" id="" onChange={checkHandler} checked />
+          <input type="checkbox" name="" id="" onChange={checkHandler} />
           <span><span className="material-symbols-outlined">done</span></span>
           전체 선택
         </label>
         <button>선택 상품 삭제</button>
       </section>
       <article className="cartMain">
-        {localStorage.length === 0 ? (
+        {cart.size === 0 ? (
           <div className="missingCart">
             <span className="material-symbols-outlined">shopping_cart</span>
             <p>장바구니에 담긴 상품이 없습니다.</p>
           </div>
         ) : (
           <menu>
-            {cartList.map((item, idx) => {
-              return <li key={idx}><CartObject data={item} oncheck={checkHandler} onchange={changeHandler} /></li>
+            {Array.from(cart).map((each, idx) => {
+              return (
+              <li key={each.name}>
+                <CartObject data={each} oncheck={checkHandler} 
+                  checkRef={ref => inputRefs.current[idx] = ref} cartHandler={cartHandler} />
+              </li>)
             })}
           </menu>
         )}
       </article>
       <section className="checkout">
-        <p>총 <b>2</b>개</p>
+        <p>총 <b>{cart.size}</b>개</p>
         <span>
-          <p>결제예정금액<span><b>4,300</b>벨</span></p>
-          {/* <p></p> */}
+          <p>결제예정금액<span><b></b>벨</span></p>
           <button>주문하기</button>
         </span>
       </section>

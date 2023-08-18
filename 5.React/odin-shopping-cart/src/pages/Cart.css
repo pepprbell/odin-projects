@@ -1,3 +1,7 @@
+.cart {
+    border-bottom: 1px solid var(--bolder);
+}
+
 .cart menu {
     padding: 0;
 }
@@ -30,12 +34,12 @@
     height: 16px;
     left: 0px;
     top: 0;
-    border: 1px solid var(--border);
+    border: 1px solid var(--bolder);
     border-radius: 2px;
 }
 
 .checkbox > span:hover {
-    background-color: #f3f3f3;
+    background-color: var(--bolder);
 }
 
 .checkbox .material-symbols-outlined {
