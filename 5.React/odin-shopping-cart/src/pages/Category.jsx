@@ -4,6 +4,7 @@ import Card from '../components/Card'
 import { useEffect, useRef, useContext, useState } from 'react';
 import './Category.css'
 import { DataContext } from '../context/DataContext';
+import useSort from '../hooks/useSort';
 
 const Category = () => {
   let { type } = useParams()
@@ -12,19 +13,31 @@ const Category = () => {
   const { data, error, loading } = useDataFetching(type, dataHandler)
 
   const [orderBy, setOrderBy] = useState('default')
+  const [sortedData, setSortedData] = useState(data)
 
   const typeDict = {
     'fish': '물고기',
     'bugs': '곤충',
   }
+  
+  // console.log(data)
     
   useEffect(() => {
     // 페이지 로딩 시 기본 정렬 자동 선택
     inputRef.current.childNodes[0].checked = true
+    setSortedData(data)
   }, [])
-
+  
   const inputRef = useRef(null)  
+  
+  useEffect(() => {
+    setSortedData(handleSort(orderBy))
+  }, [orderBy, data])
 
+
+  const handleSort = (orderBy) => {
+    return useSort(data, type, orderBy, dataHandler)
+  }
 
   return (
     <section className='category'>
@@ -46,7 +59,7 @@ const Category = () => {
           ) : error ? (
             <div><h1>error</h1></div>
           ) : (
-            data.map((each) => {
+            sortedData.map((each) => {
             return <li key={each.name}><Card res={each} cartHandler={cartHandler} /></li>
             })
           )}
