@@ -6,7 +6,7 @@ const useDataFetching = (category, dataHandler) => {
   const [loading, setLoading] = useState(true);
   
   const [storage, setStorage] = dataHandler
-  const prev = storage.get(category)
+  const prev = storage.get(`${category}-default`)
 
   useEffect(() => {
     setLoading(true)
@@ -23,7 +23,7 @@ const useDataFetching = (category, dataHandler) => {
       mode: 'cors',
       method: 'GET',
       headers: { 
-        'X-API-KEY': apiKey,
+        'X-API-KEY': '',
       }
     })
       .then((response) => {
@@ -33,7 +33,7 @@ const useDataFetching = (category, dataHandler) => {
         return response.json();
       })
       .then((response) => {
-        setStorage(prev => new Map([...prev, [category, response]]))
+        setStorage(prev => new Map([...prev, [`${category}-default`, response]]))
         setData(response)
       })
       .catch((error) => setError(error))
