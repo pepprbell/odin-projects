@@ -5,6 +5,7 @@ import { useEffect, useRef, useContext, useState } from 'react';
 import './Category.css'
 import { DataContext } from '../context/DataContext';
 import useSort from '../hooks/useSort';
+import SkeletonCard from '../components/SkeletonCard';
 
 const Category = () => {
   let { type } = useParams()
@@ -18,9 +19,8 @@ const Category = () => {
   const typeDict = {
     'fish': '물고기',
     'bugs': '곤충',
+    'sea': '해산물',
   }
-  
-  // console.log(data)
     
   useEffect(() => {
     // 페이지 로딩 시 기본 정렬 자동 선택
@@ -39,6 +39,14 @@ const Category = () => {
     return useSort(data, type, orderBy, dataHandler)
   }
 
+  const isloading = () => {
+    const div = []
+    for (let i = 0; i < 10; i++) {
+      div.push(<li key={i}><SkeletonCard/></li>)
+    }
+    return div
+  }
+
   return (
     <section className='category'>
       <section className='cateTitle'>
@@ -55,7 +63,7 @@ const Category = () => {
       <article>
         <menu>
           {loading ? (
-            <div><h1>loading...</h1></div>
+            <>{isloading()}</>
           ) : error ? (
             <div><h1>error</h1></div>
           ) : (
