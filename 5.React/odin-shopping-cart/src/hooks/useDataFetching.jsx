@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import addKRName from "../utils/addKRName";
 
 const useDataFetching = (category, dataHandler) => {
   const [data, setData] = useState([]);
@@ -33,8 +34,10 @@ const useDataFetching = (category, dataHandler) => {
         return response.json();
       })
       .then((response) => {
-        setStorage(prev => new Map([...prev, [`${category}-default`, response]]))
-        setData(response)
+        const addedData = addKRName(response, category)
+
+        setStorage(prev => new Map([...prev, [`${category}-default`, addedData]]))
+        setData(addedData)
       })
       .catch((error) => setError(error))
       .finally(() => setLoading(false));

@@ -1,8 +1,11 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useContext } from 'react';
+import nameData from '../assets/nameData'
 import './Card.css'
 import useCart from '../hooks/useCart';
+import { DataContext } from '../context/DataContext';
 
-const Card = ({res, cartHandler}) => {
+const Card = ({ res }) => {
+  const [dataHandler, cartHandler] = useContext(DataContext)
   const data = res
   const ref = useRef(0)
 
@@ -11,7 +14,7 @@ const Card = ({res, cartHandler}) => {
   }, [])
 
   const addToCart = () => {
-    useCart(cartHandler).addItem(res)
+    useCart('add', res, cartHandler)
   }
 
   return (
@@ -20,7 +23,7 @@ const Card = ({res, cartHandler}) => {
         {data['image_url'] != '' ? <img src={data['image_url']} alt=""  /> : <div><span className="material-symbols-outlined notSupported">image_not_supported</span></div> }
         <button onClick={addToCart}><span className="material-symbols-outlined">add_shopping_cart</span></button>
       </figure>
-      <p>{data.name}</p>
+      <p>{data.nameKR}</p>
       <p className="money"><b>{data.sell_nook}</b>벨</p>
     </div>
   );

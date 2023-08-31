@@ -2,6 +2,10 @@
     padding: 32px 0;
 }
 
+.loading {
+    background-color: black;
+}
+
 .card figure {
     position: relative;
     background-color: var(--background);
