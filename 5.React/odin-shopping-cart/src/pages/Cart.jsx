@@ -1,4 +1,4 @@
-import { useEffect, useRef, useContext } from "react";
+import { useEffect, useRef, useContext, useState } from "react";
 import { DataContext } from '../context/DataContext';
 import CartObject from "../components/CartObject";
 import useCart from "../hooks/useCart";
@@ -6,28 +6,72 @@ import './Cart.css'
 
 const Cart = () => {
   const [dataHandler, cartHandler] = useContext(DataContext)
+  const [totalCost, setTotalCost] = useState(0)
+  const [checked, setChecked] = useState(new Map)
   const [cart, setCart] = cartHandler
 
-  const inputRefs = useRef([])
+  // 체크박스 ref들
+  const selectAllRef = useRef(null)
+  const inputRefs = useRef({})
 
   useEffect(() => {
+    setChecked(cart)
+    handleCheckAll()
   }, [])
 
   useEffect(() => {
     console.log(cart)
+    sumCart()
   }, [cart])
 
-  const checkHandler = () => {}
+  useEffect(() => {
+    handleCheck()
+    sumCart()
+  }, [checked])
+
+  // 체크가 하나 풀리면 전체선택이 취소되는 것
+  const handleCheck = () => {
+    const isEveryChecked = Array.from(checked).every((item, value) => {
+      return item[1] == 1
+    })
+
+    selectAllRef.current.checked = isEveryChecked
+  }
+
+  // 전체선택 누를 때 동작
+  const handleCheckAll = (e) => {
+      const isChecked = e ? e.target.checked : true
+  
+      const updatedChecked = new Map();
+      Array.from(cart).forEach(([item, quantity]) => {
+        updatedChecked.set(item, isChecked ? quantity : 0);
+        inputRefs.current[item.name].checked = isChecked;
+      });
+    
+      setChecked(updatedChecked);
+  }
+
+  const deleteItem = () => {}
+
+  // 카트에 있는 물건 reduce로 총합 계산
+  const sumCart = () => {
+    const newSum = Array.from(cart).reduce((prev, curr) => {
+      const isChecked = checked.get(curr[0])==1 ? 1 : 0
+      return prev + curr[0].sell_nook * curr[1] * isChecked
+    }, 0)
+
+    setTotalCost(newSum.toLocaleString('en-US'))
+  }
 
   return (
     <section className="cart">
       <section className="cartTitle">
         <label className='checkbox'>
-          <input type="checkbox" name="" id="" onChange={checkHandler} />
+          <input type="checkbox" name="" id="" ref={selectAllRef} onChange={handleCheckAll} />
           <span><span className="material-symbols-outlined">done</span></span>
           전체 선택
         </label>
-        <button>선택 상품 삭제</button>
+        <button onClick={deleteItem}><span className="material-symbols-outlined">close</span>선택 상품 삭제</button>
       </section>
       <article className="cartMain">
         {cart.size === 0 ? (
@@ -37,11 +81,11 @@ const Cart = () => {
           </div>
         ) : (
           <menu>
-            {Array.from(cart).map((each, idx) => {
+            {Array.from(cart).map((each) => {
               return (
-              <li key={each.name}>
-                <CartObject data={each} oncheck={checkHandler} 
-                  checkRef={ref => inputRefs.current[idx] = ref} cartHandler={cartHandler} />
+              <li key={each[0].name}>
+                <CartObject data={each} oncheck={[checked, setChecked]} 
+                  checkRef={ref => inputRefs.current[each[0].name] = ref} />
               </li>)
             })}
           </menu>
@@ -50,7 +94,7 @@ const Cart = () => {
       <section className="checkout">
         <p>총 <b>{cart.size}</b>개</p>
         <span>
-          <p>결제예정금액<span><b></b>벨</span></p>
+          <p>결제예정금액<span><b>{totalCost}</b>벨</span></p>
           <button>주문하기</button>
         </span>
       </section>
