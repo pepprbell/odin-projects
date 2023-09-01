@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import './Header.css'
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
+import CustomLink from './CustomLink'
 
 const Header = ({ cartLength }) => {
   const categories = [['fish','물고기'], ['bugs','곤충'], ['sea','바다 생물'],]
@@ -24,7 +25,7 @@ const Header = ({ cartLength }) => {
       </section>
       <nav>
         {categories.map((category, idx) => {
-          return <Link to={category[0]} className='navLink' key={idx}>{category[1]}</Link>
+          return <CustomLink category={category} className='navLink' key={idx}></CustomLink>
         })}
       </nav>
     </header>

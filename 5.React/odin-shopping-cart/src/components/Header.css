@@ -66,9 +66,17 @@ header > section .material-symbols-outlined {
     font-size: 16px;
     text-decoration: none;
     line-height: 52px;
-    margin-right: 40px;
-    padding: 10px 10px 10px 0;
+    margin-right: 30px;
+    padding: 10px 20px 10px 0;
     color: #333;
+}
+
+.navLink.bold {
+    background: url('../assets/highlight.png');
+    background-size: calc(100% - 15px) 24px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position-x: 0px;
 }
 
 @media (max-width: 1000px) {
