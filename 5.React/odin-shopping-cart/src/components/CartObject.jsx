@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState, useContext } from 'react';
 import { DataContext } from '../context/DataContext';
 import './CartObject.css'
-import useCart from '../hooks/useCart';
+import useCart from '../utils/useCart';
 
-const CartObject = ({ data, oncheck, checkRef }) => {
+const CartObject = ({ data, oncheck, checkRef, del }) => {
   const [dataHandler, cartHandler] = useContext(DataContext)
   const [num, setNum] = useState(1)
   const [totalCost, setTotalCost] = useState(1)
@@ -34,7 +34,6 @@ const CartObject = ({ data, oncheck, checkRef }) => {
   }
 
   const handleInput = (e) => {
-    console.log(e)
     if (e.target.value === "") {
       setNum(1)
       if (e.type == 'blur') {
@@ -77,9 +76,10 @@ const CartObject = ({ data, oncheck, checkRef }) => {
         </label>
         <img src={data[0].image_url} alt="" />
         <span className='cartProduct'>
-          <b>물고기</b>
+          <b>{data[0].categoryKR}</b>
           <p>{data[0].nameKR}</p>
         </span>
+        <button className='delete' onClick={() => del(data[0])}><span></span></button>
       </li>
       <li className="cartAmount">
         <span>

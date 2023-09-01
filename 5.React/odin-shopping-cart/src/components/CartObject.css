@@ -30,7 +30,13 @@
 .cartDesc {
     width: 596px;
     padding: 20px 16px;
-    justify-content: left;
+    justify-content: space-between;
+    align-items: stretch;
+    text-align: left;
+}
+
+.cartDesc aside {
+    display: flex;
     align-items: stretch;
     text-align: left;
 }
@@ -43,6 +49,39 @@
     background-color: var(--border);
     padding: 5px;
     border-radius: 3px;
+}
+
+.delete {
+    width: 20px;
+    height: 20px;
+    margin-left: auto;
+    background-color: transparent;
+    border: none;
+    position: relative;
+    padding: 0;
+    cursor: pointer;
+}
+
+.delete span {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.delete span::after, .delete span::before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 24px;
+    height: 1px;
+    top: 9px;
+    left: -2px;
+    background-color: var(--light);
+    transform: rotate(45deg);
+}
+
+.delete span::before {
+    transform: rotate(-45deg);
 }
 
 .cartProduct {

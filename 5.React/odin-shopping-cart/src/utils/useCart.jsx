@@ -1,8 +1,7 @@
-const useCart = (cartHandler) => {
+const useCart = (type, res, cartHandler, newQuantity=0) => {
   const [cart, setCart] = cartHandler
 
   const updateItem = (item, newQuantity) => {
-
     const newCart = new Map(cart)
     newCart.set(item, newQuantity)
 
@@ -21,14 +20,24 @@ const useCart = (cartHandler) => {
     updateItem(item, count+1)
   }
 
-  const deleteItem = (item) => {
+  const deleteItem = (list) => {
     const newCart = new Map(cart)
-    newCart.delete(item)
+    list.forEach(each => newCart.delete(each))
 
     setCart(newCart)
   }
 
-  return { addItem, updateItem, deleteItem }
+  const cartFn = {
+    'add': addItem,
+    'update': updateItem,
+    'delete': deleteItem,
+  }
+
+  if (type == 'update') {
+    updateItem(res, newQuantity)
+  } else {
+    cartFn[type](res)
+  }
 }
 
 export default useCart
