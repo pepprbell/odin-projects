@@ -89,10 +89,10 @@
       "common bluebottle":"청띠제비나비",
       "paper kite butterfly":"왕얼룩나비",
       "great purple emperor":"왕오색나비",
-      "monach butterfly":"왕나비",
+      "monarch butterfly":"왕나비",
       "emperor butterfly":"몰포나비",
       "agrias butterfly":"아그리아스나비",
-      "raja brooke's birdwing":"붉은목도리비단나비",
+      "rajah brooke's birdwing":"붉은목도리비단나비",
       "queen alexandra's birdwing":"알렉산드라비단제비나비",
       "moth":"나방",
       "atlas moth":"아틀라스나방",
@@ -146,7 +146,7 @@
       "horned dynastid":"장수풍뎅이",
       "horned atlas":"코카서스장수풍뎅이",
       "horned elephant":"코끼리장수풍뎅이",
-      "horned herucles":"헤라클레스장수풍뎅이",
+      "horned hercules":"헤라클레스장수풍뎅이",
       "walking stick":"긴수염대벌레",
       "walking leaf":"잎사귀벌레",
       "bagworm":"도롱이벌레",
@@ -188,7 +188,7 @@
       "vampire squid":"흡혈오징어",
       "firefly squid":"반딧불오징어",
       "gazami crab":"꽃게",
-      "dungeoness crab":"던지니스크랩",
+      "dungeness crab":"던지니스크랩",
       "snow crab":"대게",
       "red king crab":"왕게",
       "acorn barnacle":"따개비",
@@ -203,6 +203,11 @@
       "sea pineapple":"멍게",
       "spotted garden eel":"가든일",
       "flatworm":"납작벌레",
-      "venus flower basket":"해로동혈"
+      "venus' flower basket":"해로동혈"
+    },
+    "category": {
+      "fish": "물고기",
+      "bugs": "곤충",
+      "sea": "바다 생물"
     }
   }

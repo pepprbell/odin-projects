@@ -6,6 +6,7 @@ import './Category.css'
 import { DataContext } from '../context/DataContext';
 import useSort from '../hooks/useSort';
 import SkeletonCard from '../components/SkeletonCard';
+import nameData from '../assets/nameData'
 
 const Category = () => {
   let { type } = useParams()
@@ -16,12 +17,6 @@ const Category = () => {
   const [orderBy, setOrderBy] = useState('default')
   const [sortedData, setSortedData] = useState(data)
 
-  const typeDict = {
-    'fish': '물고기',
-    'bugs': '곤충',
-    'sea': '해산물',
-  }
-    
   useEffect(() => {
     // 페이지 로딩 시 기본 정렬 자동 선택
     inputRef.current.childNodes[0].checked = true
@@ -50,7 +45,7 @@ const Category = () => {
   return (
     <section className='category'>
       <section className='cateTitle'>
-        <h1>{typeDict[type]}</h1>
+        <h1>{nameData['category'][type]}</h1>
         <div ref={inputRef}>
           <input type="radio" id='default' name="order_by" onChange={() => setOrderBy('default')}/>
           <label htmlFor="default">기본 정렬</label>
