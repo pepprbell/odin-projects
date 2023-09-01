@@ -27,7 +27,12 @@ const Category = () => {
   
   useEffect(() => {
     setSortedData(handleSort(orderBy))
-  }, [orderBy, data])
+  }, [orderBy])
+
+  useEffect(() => {
+    inputRef.current.childNodes[0].checked = true
+    setSortedData(handleSort('default'))
+  }, [data])
 
 
   const handleSort = (orderBy) => {
