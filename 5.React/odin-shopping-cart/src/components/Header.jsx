@@ -3,7 +3,7 @@ import './Header.css'
 import { useEffect, useRef, useState } from 'react';
 
 const Header = ({ cartLength }) => {
-  const categories = [['fish','물고기'], ['bugs','곤충'],]
+  const categories = [['fish','물고기'], ['bugs','곤충'], ['sea','바다 생물'],]
   const src = 'https://github.com/pepprbell/odin-projects/assets/67995526/f3edc535-175f-4ae5-aceb-08ca4cfade6c'
 
   const cartRef = useRef(null)
