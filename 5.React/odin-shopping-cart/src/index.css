@@ -17,6 +17,7 @@
 
   --color: #333;
   --border: #eee;
+  --bolder: #ccc;
   --accent: #10ba00;
   --light: #999;
   --background: rgba(0,0,0,0.03);
@@ -43,12 +44,21 @@ p, desc {
   margin: 0;
 }
 
+input {
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+}
+
+b {
+  font-weight: 600;
+}
+
 .money {
-  font-size: 13px;
+  font-size: 16px;
 }
 
 .money > b {
   font-size: 20px;
+  margin-right: 2px;
   font-weight: bold;
 }
 
