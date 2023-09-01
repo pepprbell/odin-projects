@@ -24,7 +24,7 @@ const Card = ({ res }) => {
         <button onClick={addToCart}><span className="material-symbols-outlined">add_shopping_cart</span></button>
       </figure>
       <p>{data.nameKR}</p>
-      <p className="money"><b>{data.sell_nook}</b>벨</p>
+      <p className="money"><b>{data.sell_nook.toLocaleString('en-US')}</b>벨</p>
     </div>
   );
 };
