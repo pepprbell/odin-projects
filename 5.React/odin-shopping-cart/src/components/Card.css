@@ -1,10 +1,16 @@
 .card {
     margin: 28px 0;
-    cursor: pointer;
+    position: relative;
 }
 
-.loading {
-    background-color: black;
+.overlayLink {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    cursor: pointer;
 }
 
 .card figure {
@@ -40,6 +46,7 @@
     padding: 0;
     border-radius: 8px;
     cursor: pointer;
+    z-index: 999;
 }
 
 .card button .material-symbols-outlined {
