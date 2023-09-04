@@ -3,6 +3,7 @@ import { Outlet } from 'react-router-dom'
 import Header from './components/Header'
 import './App.css'
 import { DataContext } from './context/DataContext'
+import Footer from './components/Footer'
 
 function App() {
   const [data, setData] = useState(new Map())
@@ -10,18 +11,22 @@ function App() {
 
   useEffect(() => {
     console.log('data:', data)
-    console.log('cart:', cart)
-  }, [data, cart])
+  }, [data])
+
+  useEffect(() => {
+    console.log('cart updated')
+  }, [cart])
 
   return (
-    <>
+    <div className='page'>
       <Header cartLength={cart.size} />
       <main className='container'>
         <DataContext.Provider value={ [[data, setData], [cart, setCart]] }>
           <Outlet />
         </DataContext.Provider>
       </main>
-    </>
+      <Footer />
+    </div>
   )
 }
 
