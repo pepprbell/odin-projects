@@ -1,7 +1,7 @@
 import { useEffect, useRef, useContext } from 'react';
 import nameData from '../assets/nameData'
 import './Card.css'
-import useCart from '../hooks/useCart';
+import useCart from '../utils/useCart';
 import { DataContext } from '../context/DataContext';
 
 const Card = ({ res }) => {
