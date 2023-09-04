@@ -2,6 +2,7 @@ import nameData from '../assets/nameData'
 
 export default function addKRName(res, category) {
   const dict = nameData[category]
+  res = res.length ? res : [res]
 
   const newRes = new Array(...res)
   res.forEach((each, idx) => {
