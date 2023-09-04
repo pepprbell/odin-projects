@@ -13,27 +13,40 @@ const Category = () => {
   const [dataHandler, cartHandler] = useContext(DataContext)
   
   const { data, error, loading } = useDataFetching(type, dataHandler)
-
+  
   const [orderBy, setOrderBy] = useState('default')
   const [sortedData, setSortedData] = useState(data)
+  const [printedData, setPrintedData] = useState([])
 
+  const [loadingMore, setLoadingMore] = useState(false)
+  const [hasMore, setHasMore] = useState(true)
+  const itemsPerPage = 40
+
+  const inputRef = useRef(null)  
+
+  // 페이지 로딩 시 기본 정렬 자동 선택
   useEffect(() => {
-    // 페이지 로딩 시 기본 정렬 자동 선택
     inputRef.current.childNodes[0].checked = true
     setSortedData(data)
   }, [])
   
-  const inputRef = useRef(null)  
-  
+  // 정렬 변경 시 데이터 업데이트
   useEffect(() => {
     setSortedData(handleSort(orderBy))
+    setHasMore(true)
   }, [orderBy])
-
+  
+  // 데이터 변경 시 데이터 업데이트 및 페이지 초기화
   useEffect(() => {
     inputRef.current.childNodes[0].checked = true
     setSortedData(handleSort('default'))
+    setHasMore(true)
   }, [data])
-
+  
+  useEffect(() => {
+    setPrintedData(sortedData.slice(0,itemsPerPage))
+    setHasMore(true)
+  }, [sortedData])
 
   const handleSort = (orderBy) => {
     return useSort(data, type, orderBy, dataHandler)
@@ -46,6 +59,53 @@ const Category = () => {
     }
     return div
   }
+
+  // 로딩될 때 window에 scroll 이벤트 리스너 추가
+  useEffect(() => {
+    const handleScroll = (e) => {
+      const scrollY = window.scrollY
+      const scrollHeight = e.target.scrollingElement.scrollHeight;
+      const clientHeight = e.target.scrollingElement.clientHeight;
+  
+      if (scrollHeight - 200 <= clientHeight + scrollY && hasMore) {
+        setLoadingMore(true)
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+  
+    // 클린업
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
+
+  useEffect(() => {
+    const loadMore = () => {
+      if (!hasMore) {
+        setLoadingMore(false) 
+        return
+      }
+  
+      const i = printedData.length
+      const e = Math.min(data.length, i + itemsPerPage)
+      const newData = sortedData.slice(i, e)
+  
+      setPrintedData(prev => [...prev, ...newData])
+      console.log(newData)
+  
+      if (e >= data.length) {
+        console.log(e, data.length, hasMore)
+        setHasMore(false)
+      }
+  
+      setLoadingMore(false)
+    }
+
+    loadMore()
+  }, [loadingMore])
+
+
 
   return (
     <section className='category'>
@@ -67,10 +127,11 @@ const Category = () => {
           ) : error ? (
             <div><h1>error</h1></div>
           ) : (
-            sortedData.map((each) => {
+            printedData.map((each) => {
             return <li key={each.name}><Card res={each} cartHandler={cartHandler} /></li>
             })
           )}
+          {loadingMore && <p>Loading...</p>}
         </menu>
       </article>
     </section>

@@ -27,7 +27,9 @@
 }
 
 .category menu {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
+    gap: 0 18.75px;
     list-style: none;
     justify-content: space-between;
     padding: 0;
@@ -44,23 +46,23 @@
     }
     
     .category menu {
-        /* display: block; */
         width: calc(100vw - 32px);
+        gap: 12px;
     }
 
     .category li {
-        width: calc(25% - 8px);
+        width: 100%;
     }
 }
 
 @media (max-width: 700px) {
     .category li {
-        width: calc((100% / 3) - 8px);
+        width: 100%;
     }
 }
 
 @media (max-width: 500px) {
     .category li {
-        width: calc(50% - 8px)
+        width: 100%
     }
 }
