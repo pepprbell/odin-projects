@@ -1,0 +1,92 @@
+.details {
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding-top: 40px;
+
+    & aside, & article {
+        width: 470px;
+        height: 470px;
+        border: 1px dotted #999;
+        text-align: left;
+        position: relative;
+    }
+
+    & main {
+        width: 100%;
+    }
+}
+
+.details {
+    & img, & figure > & div {
+        width: 470px;
+        height: 470px;
+        padding: 40px;
+        box-sizing: border-box;
+    }
+
+    & figure {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        background-color: #ddd;
+    }
+
+    & button {
+        width: 100%;
+        height: 48px;
+        border-radius: 3px;
+        background-color: var(--accent);
+        color: #fff;
+        font-size: 18px;
+        font-weight: 500;
+        border: none;
+    }
+}
+
+.details {
+    & p {
+        width: 100%;
+    }
+
+    .itemName {
+        font-size: 24px;
+        font-weight: 600;
+        line-height: 24px;
+    }
+
+    & i {
+        font-size: 14px;
+        color: var(--bolder);
+    }
+
+    .money {
+        font-size: 18px;
+        text-align: right;
+    }
+
+    .money b {
+        font-size: 24px;
+    }
+
+    .shipping {
+        font-size: 13px;
+        color: var(--light);
+    }
+}
+
+@media (max-width: 1000px) {
+    .card {
+        margin: 17px 0;
+    }
+
+    .card img, .card figure > div {
+        width: 100%;
+        height: 100%;
+    }
+
+    .card p {
+        line-height: 24px;
+    }
+}
