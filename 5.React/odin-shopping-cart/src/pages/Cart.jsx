@@ -20,7 +20,6 @@ const Cart = () => {
   }, [])
 
   useEffect(() => {
-    console.log(cart)
     sumCart()
   }, [cart])
 
@@ -31,7 +30,6 @@ const Cart = () => {
 
   // 체크가 하나 풀리면 전체선택이 취소되는 것
   const handleCheck = () => {
-    console.log('single')
     const isEveryChecked = Array.from(checked).every((item, value) => {
       return item[1] == 1
     })
@@ -41,7 +39,6 @@ const Cart = () => {
 
   // 전체선택 누를 때 동작
   const handleCheckAll = (e) => {
-    console.log('all')
       const isChecked = e ? e.target.checked : true
   
       const updatedChecked = new Map()
@@ -95,7 +92,7 @@ const Cart = () => {
           <span><span className="material-symbols-outlined">done</span></span>
           전체 선택
         </label>
-        <button onClick={deleteItem}><span className="material-symbols-outlined">close</span>선택 상품 삭제</button>
+        <button onClick={() => deleteItem(false)}><span className="material-symbols-outlined">close</span>선택 상품 삭제</button>
       </section>
       <article className="cartMain">
         {cart.size === 0 ? (
