@@ -90,12 +90,6 @@
     top: -3px;
 }
 
-@media (max-width: 1000px) {
-    .cartTitle {
-        margin-top: 20px;
-    }
-}
-
 
 /* content */
 .cartMain > div {

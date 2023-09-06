@@ -1,6 +1,7 @@
 import { useEffect, useRef, useContext, useState } from "react";
 import { DataContext } from '../context/DataContext';
 import CartObject from "../components/CartObject";
+import ShippingBar from "../components/ShippingBar";
 import useCart from "../utils/useCart";
 import './Cart.css'
 
@@ -31,7 +32,7 @@ const Cart = () => {
   // 체크가 하나 풀리면 전체선택이 취소되는 것
   const handleCheck = () => {
     const isEveryChecked = Array.from(checked).every((item, value) => {
-      return item[1] == 1
+      return item[1] !== 0
     })
 
     selectAllRef.current.checked = isEveryChecked
@@ -76,12 +77,13 @@ const Cart = () => {
 
   // 카트에 있는 물건 reduce로 총합 계산
   const sumCart = () => {
+    console.log(checked)
     const newSum = Array.from(cart).reduce((prev, curr) => {
-      const isChecked = checked.get(curr[0])==1 ? 1 : 0
+      const isChecked = checked.get(curr[0])!==0 ? 1 : 0
       return prev + curr[0].sell_nook * curr[1] * isChecked
     }, 0)
 
-    setTotalCost(newSum.toLocaleString('en-US'))
+    setTotalCost(newSum)
   }
 
   return (
@@ -112,10 +114,19 @@ const Cart = () => {
           </menu>
         )}
       </article>
+      {cart.size === 0 ? (
+        <></>
+      ) : (
+        <ShippingBar money={totalCost} />
+      )}
       <section className="checkout">
-        <p>총 <b>{cart.size}</b>개</p>
+        {totalCost < 10000 ? (
+          <p>총 <b>{cart.size}</b>개 + 배송비 <b>1200</b>벨</p>
+        ) : (
+          <p>총 <b>{cart.size}</b>개</p>
+        )}
         <span>
-          <p>결제예정금액<span><b>{totalCost}</b>벨</span></p>
+          <p>결제예정금액<span><b>{totalCost >= 10000 ? totalCost.toLocaleString('en-US') : (totalCost+1200)}</b>벨</span></p>
           <button>주문하기</button>
         </span>
       </section>
