@@ -1,6 +1,6 @@
 .cartObject {
     width: 100%;
-    height: 130px;
+    height: 132px;
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
     display: flex;
@@ -10,7 +10,6 @@
 
 .cartObject li {
     display: flex;
-    height: 130px;
     marker: none;
     box-sizing: border-box;
 }
@@ -29,7 +28,7 @@
 
 .cartDesc {
     width: 596px;
-    padding: 20px 16px;
+    padding: 16px 16px 16px 0;
     justify-content: space-between;
     align-items: stretch;
     text-align: left;
@@ -41,14 +40,19 @@
     text-align: left;
 }
 
-.cartDesc img {
+.cartImg {
+    padding: 16px;
+}
+
+.cartImg img {
     display: inline-block;
-    width: 90px;
-    height: 90px;
+    width: 100px;
+    height: 100px;
     margin-left: 13px;
     background-color: var(--border);
     padding: 5px;
     border-radius: 3px;
+    box-sizing: border-box;
 }
 
 .delete {
@@ -60,75 +64,68 @@
     position: relative;
     padding: 0;
     cursor: pointer;
+
+    & span {
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+
+    & span::after, & span::before {
+        content: "";
+        display: block;
+        position: absolute;
+        width: 24px;
+        height: 1px;
+        top: 9px;
+        left: -2px;
+        background-color: var(--light);
+        transform: rotate(45deg);
+    }
+
+    & span::before {
+        transform: rotate(-45deg);
+    }
 }
 
-.delete span {
-    position: absolute;
-    left: 0;
-    top: 0;
+@media (max-width: 800px) {
+    .cartObject {
+        flex-wrap: wrap;
+        height: fit-content;
+    }
+    
+    .cartImg img {
+        width: 90px;
+        height: 90px;
+    }
+
+    .cartDesc {
+        width: calc(100% - 153px);
+        padding-bottom: 0;
+        height: fit-content;
+    }
+
+    .cartAmount {
+        width: 50%;
+        height: fit-content;
+        justify-content: left;
+        padding: 0 0 20px 153px;
+        /* padding: 0 0 20px 47px; */
+        border: none;
+    }
+
+    .cartCost {
+        width: fit-content;
+        height: fit-content;
+        justify-content: right;
+        padding: 0 16px 0 0;
+        align-items: center;
+        border: none;
+    }
 }
 
-.delete span::after, .delete span::before {
-    content: "";
-    display: block;
-    position: absolute;
-    width: 24px;
-    height: 1px;
-    top: 9px;
-    left: -2px;
-    background-color: var(--light);
-    transform: rotate(45deg);
-}
-
-.delete span::before {
-    transform: rotate(-45deg);
-}
-
-.cartProduct {
-    display: inline-block;
-    padding-left: 16px;
-    box-sizing: border-box;
-}
-
-.cartAmount > span {
-    display: flex;
-    width: 100px;
-    height: 30px;
-    border: 1px solid var(--bolder);
-    border-radius: 5px;
-}
-
-.cartAmount button {
-    width: 30px;
-    height: 100%;
-    background-color: transparent;
-    padding: 0;
-    border: none;
-    text-align: center;
-    color: #888;
-    cursor: pointer;
-}
-
-.cartAmount input[type=number] {
-    width: 40px;
-    height: 30px;
-    border: none;
-    box-sizing: border-box;
-    outline: none;
-    border-right: 1px solid var(--bolder);
-    border-left: 1px solid var(--bolder);
-    font-size: 16px;
-    background-color: transparent;
-    text-align: center;
-}
-
-.cartAmount .material-symbols-outlined {
-    font-weight: 200;
-    line-height: 30px;
-}
-
-input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+@media (max-width: 400px) {
+    .cartAmount {
+        padding: 0 0 20px 47px;
+    }
 }

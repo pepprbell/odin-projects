@@ -1,5 +1,6 @@
 .cart {
     border-bottom: 1px solid var(--bolder);
+    padding-top: 36px;
 }
 
 .cart menu {
@@ -59,7 +60,6 @@
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    margin-top: 36px;
     padding-bottom: 5px;
     border-bottom: 1px solid var(--bolder);
     line-height: 30px;
