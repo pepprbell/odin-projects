@@ -1,8 +1,8 @@
 import { useEffect, useRef, useContext, useState } from "react";
 import { DataContext } from '../context/DataContext';
+import useCart from "../utils/useCart";
 import CartObject from "../components/CartObject";
 import ShippingBar from "../components/ShippingBar";
-import useCart from "../utils/useCart";
 import './Cart.css'
 
 const Cart = () => {
@@ -120,13 +120,13 @@ const Cart = () => {
         <ShippingBar money={totalCost} />
       )}
       <section className="checkout">
-        {totalCost < 10000 ? (
-          <p>총 <b>{cart.size}</b>개 + 배송비 <b>1200</b>벨</p>
+        {totalCost < 10000 && cart.size !== 0 ? (
+          <p>총 <b>{cart.size}</b>개 + 배송비 <b>1,200</b>벨</p>
         ) : (
           <p>총 <b>{cart.size}</b>개</p>
         )}
         <span>
-          <p>결제예정금액<span><b>{totalCost >= 10000 ? totalCost.toLocaleString('en-US') : (totalCost+1200)}</b>벨</span></p>
+          <p>결제예정금액<span><b>{totalCost >= 10000 || cart.size === 0 ? totalCost.toLocaleString('en-US') : (totalCost+1200).toLocaleString('en-US')}</b>벨</span></p>
           <button>주문하기</button>
         </span>
       </section>
