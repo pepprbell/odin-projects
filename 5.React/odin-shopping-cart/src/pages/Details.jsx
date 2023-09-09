@@ -10,23 +10,32 @@ import CountButton from '../components/CountButton'
 
 const Details = () => {
   const [dataHandler, cartHandler] = useContext(DataContext)
+  const [originalData, setData] = dataHandler
   const { type, name } = useParams()
   const [num, setNum] = useState(1)
   
   const { data, error, loading } = useItemFetching(type, name)
+  const [res, setRes] = useState(null)
   
   const inputref = useRef(null)
 
   useEffect(() => {
-    // inputref.current.value = 1
-  }, [])
-
-  useEffect(() => {
     inputref.current.value = num
   }, [num])
+
+  useEffect(() => {
+    if (!data[0]) return
+
+    originalData.get(`${type}-default`).forEach(each => {
+      if (each.name == data[0].name) {
+        setRes(each)
+        return
+      }
+    });
+  }, [data])
   
   function handleClick() {
-    useCart('update', data[0], cartHandler, num)
+    useCart('add', res, cartHandler, num)
   }
 
   return (
