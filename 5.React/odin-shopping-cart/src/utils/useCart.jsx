@@ -8,16 +8,18 @@ const useCart = (type, res, cartHandler, newQuantity=0) => {
     setCart(newCart)
   }
 
-  const addItem = (item) => {
-    let count = cart.get(item) || 0
+  const addItem = (item, newQuantity) => {
+    const count = cart.get(item) || 0
+    const add = newQuantity != 0 ? newQuantity : 1
+    
 
     if (count === 0) {
       alert('장바구니에 상품이 담겼습니다.')
     } else {
-      alert(`한 번 더 담으셨네요!\n장바구니 수량이 ${count + 1}개가 되었습니다.`)
+      alert(`한 번 더 담으셨네요!\n장바구니 수량이 ${count + add}개가 되었습니다.`)
     }
 
-    updateItem(item, count+1)
+    updateItem(item, count+add)
   }
 
   const deleteItem = (list) => {
@@ -36,7 +38,7 @@ const useCart = (type, res, cartHandler, newQuantity=0) => {
   if (type == 'update') {
     updateItem(res, newQuantity)
   } else {
-    cartFn[type](res)
+    cartFn[type](res, newQuantity)
   }
 }
 
