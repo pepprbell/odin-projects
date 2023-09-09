@@ -4,14 +4,25 @@
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
     display: flex;
+    position: relative;
     justify-content: space-between;
     margin: 0;
-}
 
-.cartObject li {
-    display: flex;
-    marker: none;
-    box-sizing: border-box;
+    & li {
+        display: flex;
+        marker: none;
+        box-sizing: border-box;
+    }
+
+    .overlayLink {
+        position: absolute;
+        width: 500px;
+        height: 100px;
+        top: 16px;
+        left: 47px;
+        z-index: 5;
+        cursor: pointer;
+    }
 }
 
 .cartAmount, .cartCost {
@@ -32,27 +43,27 @@
     justify-content: space-between;
     align-items: stretch;
     text-align: left;
-}
 
-.cartDesc aside {
-    display: flex;
-    align-items: stretch;
-    text-align: left;
+    & aside {
+        display: flex;
+        align-items: stretch;
+        text-align: left;
+    }
 }
 
 .cartImg {
     padding: 16px;
-}
 
-.cartImg img {
-    display: inline-block;
-    width: 100px;
-    height: 100px;
-    margin-left: 13px;
-    background-color: var(--border);
-    padding: 5px;
-    border-radius: 3px;
-    box-sizing: border-box;
+    & img {
+        display: inline-block;
+        width: 100px;
+        height: 100px;
+        margin-left: 13px;
+        background-color: var(--border);
+        padding: 5px;
+        border-radius: 3px;
+        box-sizing: border-box;
+    }
 }
 
 .delete {
@@ -92,6 +103,10 @@
     .cartObject {
         flex-wrap: wrap;
         height: fit-content;
+
+        .overlayLink {
+            width: calc(100vw - 140px);
+        }
     }
     
     .cartImg img {
@@ -124,7 +139,7 @@
     }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 500px) {
     .cartAmount {
         padding: 0 0 20px 47px;
     }

@@ -3,6 +3,7 @@ import { DataContext } from '../context/DataContext';
 import './CartObject.css'
 import useCart from '../utils/useCart';
 import CountButton from './CountButton';
+import { Link } from 'react-router-dom';
 
 const CartObject = ({ data, oncheck, checkRef, del }) => {
   const [dataHandler, cartHandler] = useContext(DataContext)
@@ -15,7 +16,7 @@ const CartObject = ({ data, oncheck, checkRef, del }) => {
 
   // 기본 카트 내용물 디스플레이
   useEffect(() => {
-    let n = parseInt(data[1])
+    const n = parseInt(data[1])
     setNum(n)
     inputRef.current.value = n
   }, [])
@@ -36,6 +37,7 @@ const CartObject = ({ data, oncheck, checkRef, del }) => {
 
   return (
     <menu className="cartObject">
+      <Link to={`/${data[0].category}/${data[0].name}`} className='overlayLink' />
       <li className='cartImg'>
         <label className='checkbox'>
             <input type="checkbox" name="" id="" onChange={handleCheck} ref={checkRef} />
