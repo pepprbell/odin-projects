@@ -2,14 +2,14 @@ import { useEffect, useState, useContext, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import './Details.css'
 import useItemFetching from '../hooks/useItemFetching';
-import useDataFetching from '../hooks/useItemFetching';
+import useDataFetching from '../hooks/useDataFetching';
 import { DataContext } from '../context/DataContext';
-import CountButton from '../components/CountButton'
-import Image from '../components/Image';
+import CountButton from '../components/CountButton';
 import Display from '../components/Display';
 import capitalize from '../utils/capitalize';
 import useCart from '../utils/useCart';
 import nameData from '../assets/nameData'
+import Location from '../components/Location';
 
 const Details = () => {
   const [dataHandler, cartHandler] = useContext(DataContext)
@@ -46,6 +46,7 @@ const Details = () => {
 
   return (
     <section className="details">
+      <Location />
       {loading ? (
         <>
         <aside className='detailLoading'>
