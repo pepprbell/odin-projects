@@ -7,7 +7,6 @@
 
     & aside, & article {
         width: 470px;
-        /* border: 1px dotted #999; */
         text-align: left;
         position: relative;
     }
@@ -23,6 +22,7 @@
         height: 470px;
         padding: 40px;
         box-sizing: border-box;
+        object-fit: contain;
     }
 
     & figure {
@@ -30,6 +30,7 @@
         height: 100%;
         margin: 0;
         border: 1px solid var(--bolder);
+        font-size: 0;
     }
 
     .addCart {

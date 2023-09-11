@@ -2,19 +2,22 @@ import { useEffect, useState, useContext, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import './Details.css'
 import useItemFetching from '../hooks/useItemFetching';
+import useDataFetching from '../hooks/useItemFetching';
 import { DataContext } from '../context/DataContext';
-import capitalize from '../utils/capitalize';
-import nameData from '../assets/nameData'
-import useCart from '../utils/useCart';
 import CountButton from '../components/CountButton'
+import Image from '../components/Image';
+import Display from '../components/Display';
+import capitalize from '../utils/capitalize';
+import useCart from '../utils/useCart';
+import nameData from '../assets/nameData'
 
 const Details = () => {
   const [dataHandler, cartHandler] = useContext(DataContext)
-  const [originalData, setData] = dataHandler
   const { type, name } = useParams()
   const [num, setNum] = useState(1)
   
   const { data, error, loading } = useItemFetching(type, name)
+  const { originalData, Oerror, Oloading } = useDataFetching(type, dataHandler)
   const [res, setRes] = useState(null)
   
   const inputref = useRef(null)
@@ -25,14 +28,17 @@ const Details = () => {
 
   useEffect(() => {
     if (!data[0]) return
+    console.log(data)
 
-    originalData.get(`${type}-default`).forEach(each => {
-      if (each.name == data[0].name) {
-        setRes(each)
-        return
-      }
-    });
-  }, [data])
+    if (originalData) {
+      originalData.get(`${type}-default`).forEach(each => {
+        if (each.name == data[0].name) {
+          setRes(each)
+          return
+        }
+      });
+    }
+  }, [data, originalData])
   
   function handleClick() {
     useCart('add', res, cartHandler, num)
@@ -64,9 +70,7 @@ const Details = () => {
       ) : (
         <>
         <aside>
-          <figure>
-            {data[0].image_url != '' ? <img src={data[0].image_url} alt=""  /> : <div><span className="material-symbols-outlined notSupported">image_not_supported</span></div> }
-          </figure>
+          <Display urlList={[data[0].image_url, data[0].render_url]} />
         </aside>
         <article>
           <p className='type'>{nameData.category[type]}</p>
