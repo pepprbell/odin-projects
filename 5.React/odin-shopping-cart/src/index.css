@@ -6,6 +6,7 @@
   font-weight: 400;
   
   overflow-x: hidden;
+  scroll-behavior: smooth;
 
   color: var(--color);
 

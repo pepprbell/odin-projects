@@ -8,6 +8,7 @@ import Footer from './components/Footer'
 function App() {
   const [data, setData] = useState(new Map())
   const [cart, setCart] = useState(new Map())
+  window.history.scrollRestoration = 'auto'
 
   useEffect(() => {
     console.log('data:', data)
