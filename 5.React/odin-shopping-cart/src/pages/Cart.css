@@ -43,7 +43,7 @@
     background-color: var(--bolder);
 }
 
-.checkbox .material-symbols-outlined {
+.checkbox .material-symbols-rounded {
     position: absolute;
     font-size: 22px;
     margin: 0;
@@ -82,7 +82,7 @@
     position: relative;
 }
 
-.cartTitle button .material-symbols-outlined {
+.cartTitle button .material-symbols-rounded {
     font-size: 22px;
     font-weight: 300;
     position: absolute;

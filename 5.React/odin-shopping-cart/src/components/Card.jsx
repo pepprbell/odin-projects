@@ -23,7 +23,7 @@ const Card = ({ res, type }) => {
       <Link to={'/'+type+'/'+data.name} className='overlayLink'></Link>
       <figure>
         <Image src={data['image_url']}></Image>
-        <button onClick={addToCart}><span className="material-symbols-outlined">add_shopping_cart</span></button>
+        <button onClick={addToCart}><span className="material-symbols-rounded">add_shopping_cart</span></button>
       </figure>
       <p>{data.nameKR}</p>
       <p className="money"><b>{data.sell_nook.toLocaleString('en-US')}</b>벨</p>

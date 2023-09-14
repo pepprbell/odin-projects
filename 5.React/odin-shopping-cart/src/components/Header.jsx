@@ -21,7 +21,7 @@ const Header = ({ cartLength }) => {
     <header>
       <section>
         <Link to='/' className='logo'><img src={src} alt="" /></Link>
-        <Link to='/cart' className='shop'><span ref={cartRef} className='circle'>{ cartLength ? cartLength : localStorage.length }</span><span className="material-symbols-outlined">shopping_cart</span></Link>
+        <Link to='/cart' className='shop'><span ref={cartRef} className='circle'>{ cartLength ? cartLength : localStorage.length }</span><span className="material-symbols-rounded">shopping_cart</span></Link>
       </section>
       <nav>
         {categories.map((category, idx) => {
