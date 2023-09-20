@@ -17,6 +17,11 @@
   flex: 1;
 }
 
+.container:has(> .home) {
+  width: 100%;
+  background-color: #f1f4f6;
+}
+
 footer {
   flex-shrink: 0;
 }
