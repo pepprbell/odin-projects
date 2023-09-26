@@ -92,10 +92,8 @@ const Category = () => {
       const newData = sortedData.slice(i, e)
   
       setPrintedData(prev => [...prev, ...newData])
-      console.log(newData)
   
       if (e >= data.length) {
-        console.log(e, data.length, hasMore)
         setHasMore(false)
       }
   
@@ -128,7 +126,7 @@ const Category = () => {
             <div><h1>error</h1></div>
           ) : (
             printedData.map((each) => {
-            return <li key={each.name}><Card res={each} cartHandler={cartHandler} /></li>
+              return <li key={each.name} id={each.name}><Card res={each} type={type} /></li>
             })
           )}
           {loadingMore && <p>Loading...</p>}

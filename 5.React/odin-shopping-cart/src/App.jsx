@@ -10,13 +10,13 @@ function App() {
   const [cart, setCart] = useState(new Map())
   window.history.scrollRestoration = 'auto'
 
-  useEffect(() => {
-    console.log('data:', data)
-  }, [data])
+  // useEffect(() => {
+  //   console.log('data:', data)
+  // }, [data])
 
-  useEffect(() => {
-    console.log('cart updated')
-  }, [cart])
+  // useEffect(() => {
+  //   console.log('cart updated')
+  // }, [cart])
 
   return (
     <div className='page'>
