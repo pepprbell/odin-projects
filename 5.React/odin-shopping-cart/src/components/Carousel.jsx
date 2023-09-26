@@ -31,8 +31,8 @@ const Carousel = ({  }) => {
   }, [])
 
   useEffect(() => {
-    window.addEventListener('resize', () => transform())
-    return () => window.removeEventListener('resize', () => transform())
+    window.addEventListener('resize', transform)
+    return () => window.removeEventListener('resize', transform)
   }, [current])
 
   useEffect(() => {
@@ -58,7 +58,7 @@ const Carousel = ({  }) => {
   }
 
   function transform(num) {
-    const curr = num !== undefined ? num : current
+    const curr = typeof num === 'number' ? num : current
     // 화면 너비 (스크롤바 제외)
     const w = divRef.current.clientWidth
     
