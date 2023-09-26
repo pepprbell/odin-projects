@@ -22,19 +22,21 @@ const Carousel = ({  }) => {
   const [buttonSwitch, setButtonSwitch] = useState(false)
   const bannerWidth = 820
   const viewRef = useRef(null)
+  const divRef = useRef(null)
 
   useEffect(() => {
     getImage()
     setCurrent(0)
     transform(0)
-
-    window.addEventListener('resize', () => transform(current))
-    return () => window.removeEventListener('resize', () => transform(current))
   }, [])
 
   useEffect(() => {
+    window.addEventListener('resize', () => transform())
+    return () => window.removeEventListener('resize', () => transform())
+  }, [current])
+
+  useEffect(() => {
     if (transition === 'smooth') return
-    move()
 
     setTimeout(() => {
       setTransition('smooth')
@@ -55,38 +57,38 @@ const Carousel = ({  }) => {
     setImageList(newList)
   }
 
-  function transform(curr) {
+  function transform(num) {
+    const curr = num !== undefined ? num : current
     // 화면 너비 (스크롤바 제외)
-    const w = document.documentElement.clientWidth
-    console.log(w, document.documentElement.scrollWidth, document.documentElement.scrollHeight)
-
+    const w = divRef.current.clientWidth
+    
     // 기본 offset
-    const raw = w > 820 ?
-      bannerWidth*2.5 - w/2 : 
-      Math.min(w, bannerWidth*2.5 - w/2)
-
+    const raw = w > 820 ? 
+    bannerWidth*2.5 - w/2 : Math.min(w, bannerWidth*2.5 - w/2)
+    
     const newDx = w > 1000 ? bannerWidth*curr + raw : 
-      w > bannerWidth ? bannerWidth*curr + raw + 16 : raw*curr + 16
+    w > bannerWidth ? bannerWidth*curr + raw : raw*(curr+2)
     
     viewRef.current.style.transform = `translate(-${newDx}px)`
 
     if (curr < 0) {  // curr 마지막으로 가기
       setTimeout(() => {
         let dx = w > 1000 ? bannerWidth*(urlList.length-1) + raw : 
-          w > bannerWidth ? bannerWidth*(urlList.length-1) + raw + 16 : raw*(urlList.length-1) + 16
+          w > bannerWidth ? bannerWidth*(urlList.length-1) + raw : w*(urlList.length+1)
         move(dx)
       }, 200);
 
     } else if (curr > urlList.length-1) { // curr 0으로 가기
       setTimeout(() => {
         let dx = w > 1000 ? raw : 
-          w > bannerWidth ? raw + 16 : 16
+          w > bannerWidth ? raw : w*2
         move(dx)
       }, 200);
     }
   }
 
   function move(dx) {
+    console.log(dx)
     setTransition('')
     viewRef.current.style.transform = `translate(-${dx}px)`
 
@@ -120,7 +122,7 @@ const Carousel = ({  }) => {
   }
 
   return (
-    <div className="carousel">
+    <div className="carousel" ref={divRef}>
       <ul className={"viewport " + transition} ref={viewRef}>
         {imageList}
       </ul>
