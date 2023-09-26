@@ -19,12 +19,12 @@ const useDataFetching = (category, dataHandler) => {
       return
     }
     
-    console.log('fetching...')
+    // console.log('fetching...')
     fetch("https://api.nookipedia.com/nh/" + category, {
       mode: 'cors',
       method: 'GET',
       headers: { 
-        'X-API-KEY': '',
+        'X-API-KEY': import.meta.env.VITE_ACNH_KEY,
       }
     })
       .then((response) => {

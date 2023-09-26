@@ -9,12 +9,12 @@ const useItemFetching = (category, name) => {
   useEffect(() => {
     setLoading(true)
     
-    console.log('fetching item...')
+    // console.log('fetching item...')
     fetch("https://api.nookipedia.com/nh/" + category + '/' + name, {
       mode: 'cors',
       method: 'GET',
       headers: { 
-        'X-API-KEY': '',
+        'X-API-KEY': import.meta.env.VITE_ACNH_KEY,
       }
     })
       .then((response) => {
