@@ -41,7 +41,7 @@ const CartObject = ({ data, oncheck, checkRef, del }) => {
       <li className='cartImg'>
         <label className='checkbox'>
             <input type="checkbox" name="" id="" onChange={handleCheck} ref={checkRef} />
-            <span><span className="material-symbols-outlined">done</span></span>
+            <span><span className="material-symbols-rounded">done</span></span>
           </label>
           <img src={data[0].image_url} alt="" />
       </li>
