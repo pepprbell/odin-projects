@@ -1,0 +1,196 @@
+.cart {
+    border-bottom: 1px solid var(--bolder);
+    padding-top: 36px;
+}
+
+.cart menu {
+    padding: 0;
+}
+
+.cart li {
+    list-style: none;
+}
+
+.cart input[type=checkbox] {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    accent-color: var(--accent);
+    appearance: none;
+    margin: 0;
+}
+
+.cart input[type=checkbox]:checked+span {
+    background-color: var(--accent);
+    border-color: var(--accent);
+}
+
+.checkbox {
+    position: relative;
+}
+
+.checkbox > span {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    left: 0px;
+    top: 0;
+    border: 1px solid var(--bolder);
+    border-radius: 2px;
+}
+
+.checkbox > span:hover {
+    background-color: var(--bolder);
+}
+
+.checkbox .material-symbols-rounded {
+    position: absolute;
+    font-size: 22px;
+    margin: 0;
+    padding: 0;
+    left: -3px;
+    top: -3px;
+    width: fit-content;
+    height: fit-content;
+    color: #fff;
+}
+
+/* header */
+.cartTitle {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-bottom: 5px;
+    border-bottom: 1px solid var(--bolder);
+    line-height: 30px;
+}
+
+.cartTitle > .checkbox > span {
+    top: 6px;
+}
+
+.cartTitle input[type=checkbox] {
+    margin-right: 4px;
+}
+
+.cartTitle button {
+    background-color: transparent;
+    border: none;
+    font-size: 14px;
+    padding: 0;
+    cursor: pointer;
+    position: relative;
+}
+
+.cartTitle button .material-symbols-rounded {
+    font-size: 22px;
+    font-weight: 300;
+    position: absolute;
+    left: -20px;
+    top: -3px;
+}
+
+
+/* content */
+.cartMain > div {
+    border: 1px solid var(--border);
+    width: 100%;
+    margin: 50px 0;
+    border-radius: 20px;
+}
+
+.missingCart {
+    padding: 20vh 0;
+}
+
+.missingCart > span {
+    color: var(--accent);
+    font-size: 60px;
+}
+
+@media (max-width: 1000px) {
+    .cartMain > div {
+        margin-top: 20px;
+    }
+
+    .missingCart {
+        padding: 20vh 0;
+    }
+}
+
+/* footer */
+.checkout {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100vw;
+    height: 70px;
+    padding: 0 calc(50vw - 500px);
+    box-sizing: border-box;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background-color: var(--accent);
+    color: #fff;
+}
+
+.checkout > span > * {
+    display: inline-block;
+    font-size: 18px;
+    line-height: 48px;
+}
+
+.checkout > span b {
+    font-size: 24px;
+    margin-right: 2px;
+    margin-left: 30px;
+}
+
+.checkout button {
+    background-color: #fff;
+    color: var(--accent);
+    width: 270px;
+    height: 48px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    margin-left: 30px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+@media (max-width: 1000px) {
+    .checkout > p {
+        display: none;
+    }
+
+    .checkout > span {
+        display: flex;
+        justify-content: space-between;
+        width: 100vw;
+        padding: 0 16px;
+        box-sizing: border-box;
+    }
+
+    .checkout button {
+        width: 160px;
+        height: 48px;
+    }
+}
+
+@media (max-width: 500px) {
+    .checkout > span p {
+        display: flex;
+        flex-direction: column;
+        font-size: 14px;
+        text-align: left;
+        line-height: 24px;
+    }
+
+    .checkout > span b {
+        font-size: 18px;
+        margin-left: 0;
+    }
+}

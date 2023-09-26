@@ -1,0 +1,35 @@
+#root {
+  width: 100%;
+  min-height: 100vh;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.container {
+  width: 1000px;
+  margin: 0 auto;
+  flex: 1;
+}
+
+.container:has(> .home) {
+  width: 100%;
+  background-color: #f1f4f6;
+}
+
+footer {
+  flex-shrink: 0;
+}
+
+@media (max-width: 1000px) {
+  .container {
+    width: 100%;
+    padding: 0 16px;
+    box-sizing: border-box;
+  }
+}

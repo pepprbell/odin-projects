@@ -1,0 +1,42 @@
+.countButton {
+    display: flex;
+    width: 100px;
+    height: 30px;
+    border: 1px solid var(--bolder);
+    border-radius: 5px;
+
+    & button {
+        width: 30px;
+        height: 100%;
+        background-color: transparent;
+        padding: 0;
+        border: none;
+        text-align: center;
+        color: #888;
+        cursor: pointer;
+    }
+
+    & input[type=number] {
+        width: 40px;
+        height: 30px;
+        border: none;
+        box-sizing: border-box;
+        outline: none;
+        border-right: 1px solid var(--bolder);
+        border-left: 1px solid var(--bolder);
+        font-size: 16px;
+        background-color: transparent;
+        text-align: center;
+    }
+
+    .material-symbols-rounded {
+        font-weight: 200;
+        line-height: 30px;
+    }
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}

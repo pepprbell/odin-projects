@@ -1,0 +1,20 @@
+.display {
+    display: flex;
+    flex-wrap: wrap;
+
+    & figure:not(:first-child) {
+        width: 90px !important;
+        height: 90px !important;
+        margin: 12px 12px 0 0;
+    }
+
+    & figure:not(:first-child):hover {
+        outline: 1px solid var(--light);
+    }
+
+    & figure:not(:first-child) img {
+        width: 90px !important;
+        height: 90px !important;
+        padding: 8px;
+    }
+}
