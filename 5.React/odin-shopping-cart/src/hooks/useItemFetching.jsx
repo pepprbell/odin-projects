@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import addKRName from "../utils/addKRName";
 
 const useItemFetching = (category, name) => {
-  const [data, setData] = useState([]);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [itemData, setData] = useState([]);
+  const [itemError, setError] = useState(null);
+  const [itemLoading, setLoading] = useState(true);
 
   useEffect(() => {
     setLoading(true)
@@ -32,8 +32,7 @@ const useItemFetching = (category, name) => {
       .finally(() => setLoading(false));
   }, [category]);
     
-  console.log(data, error)
-  return { data, error, loading };
+  return { itemData, itemError, itemLoading };
 };
 
 export default useItemFetching;
